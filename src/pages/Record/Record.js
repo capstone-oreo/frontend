@@ -7,6 +7,7 @@ const AudioRecord = () => {
   const [source, setSource] = useState();
   const [analyser, setAnalyser] = useState();
   const [audioUrl, setAudioUrl] = useState();
+  const [disabled, setDisabled] =  useState(true);
 
   const onRecAudio = () => {
     // 음원정보를 담은 노드를 생성, 음원 실행, 디코딩
@@ -52,35 +53,47 @@ const AudioRecord = () => {
 
   // 음성 녹음 중지
   const offRecAudio = () => {
+    // dataavailable 이벤트로 Blob 데이터에 대한 응답을 받을 수 있음
     media.ondataavailable = function (e) {
       setAudioUrl(e.data);
       setOnRec(true);
     };
 
-    // 오디오 스트림 정지
+    // 모든 트랙에서 stop()을 호출해 오디오 스트림을 정지
     stream.getAudioTracks().forEach(function (track) {
       track.stop();
     });
 
     // 미디어 캡처 중지
     media.stop();
+
+    // 메서드가 호출 된 노드 연결 해제
     analyser.disconnect();
     source.disconnect();
-  };
-
-  const onSubmitAudioFile = useCallback(() => {
+    
     if (audioUrl) {
-      console.log(URL.createObjectURL(audioUrl)); // 출력된 링크 -> 녹음된 오디오
+      URL.createObjectURL(audioUrl); // 출력된 링크에서 녹음된 오디오 확인 가능
     }
-    // File 생성자를 통해 파일로 변환
-    const sound = new File([audioUrl], "soundBlob", { lastModified: new Date().getTime(), type: "audio" });
-    console.log(sound); // File 정보 출력
-  }, [audioUrl]);
+    
+    // File 생성자를 사용해 파일로 변환
+    const sound = new File([audioUrl], "soundBlob", {
+      lastModified: new Date().getTime(),
+      type: "audio",
+    });
 
+    setDisabled(false);
+    console.log(sound); // File 정보 출력
+  };
+  const play = ()=>{
+      const audio = new Audio(URL.createObjectURL(audioUrl)); // 😀😀😀
+      audio.loop = false;
+      audio.volume = 1;
+      audio.play();
+  }
   return (
     <>
       <button onClick={onRec ? onRecAudio : offRecAudio}>녹음</button>
-      <button onClick={onSubmitAudioFile}>결과 확인</button>
+      <button onClick={play} disabled={disabled}>재생</button>
     </>
   );
 };
