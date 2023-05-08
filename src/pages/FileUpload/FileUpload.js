@@ -18,25 +18,28 @@ const FileUpload = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append("file", file);
 
     // 서버로 데이터 전송
-    axios.post('https://132.145.87.252/api/files-test', file, {
-      headers: {
-        'Content-Type': 'audio/mpeg'
-      }
-    })
+    axios
+      .post("/api/files-test", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then((response) => {
-         // 응답 처리 
-        console.log('요청 성공')
-        console.log(response)
+        // 응답 처리
+        console.log("요청 성공");
+        console.log(response);
       })
       .catch((error) => {
         // 예외 처리
-        console.log('요청 실패')
-        console.log(error)
-      })
-  };
+        console.log("요청 실패");
+        console.log(error);
+      }
+      );
+    }
+
   return (
     <form onSubmit={handleSubmit}>
       <input type="file" onChange={handleChange} />

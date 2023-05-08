@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import axios from 'axios';
 
 const AudioRecord = () => {
@@ -76,7 +76,7 @@ const AudioRecord = () => {
       URL.createObjectURL(audioUrl); // 출력된 링크에서 녹음된 오디오 확인 가능
     }
     
-    // File 생성자를 사용해 파일로 변환
+    // 콘솔 출력용 코드. 나중에 삭제
     const sound = new File([audioUrl], "soundBlob", {
       lastModified: new Date().getTime(),
       type: "audio",
@@ -93,32 +93,37 @@ const AudioRecord = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const record = new Audio(URL.createObjectURL(audioUrl)); 
     const formData = new FormData();
-    formData.append('record', record);
+    // File 생성자를 사용해 파일로 변환
+    const file = new File([audioUrl], "soundBlob", { lastModified: new Date().getTime(), type: "audio" });
+    formData.append("file", file);
 
     // 서버로 데이터 전송
-    axios( {
-      method: 'POST',
-      url: "http://132.145.87.252/api/files-test ",
-      data: formData,
-    })
-      .then((result) => {
+    axios
+      .post("/api/files-test", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
         // 응답 처리
-        console.log('요청 성공')
-        console.log(result)
+        console.log("요청 성공");
+        console.log(response);
       })
       .catch((error) => {
-        // 에러 처리
-        console.log('요청 실패')
-        console.log(error)
-      });
-  };
+        // 예외 처리
+        console.log("요청 실패");
+        console.log(error);
+      }
+      );
+    }
   return (
     <>
       <button onClick={onRec ? onRecAudio : offRecAudio}>녹음</button>
       <button onClick={play} disabled={disabled}>재생</button>
+      <form onSubmit={handleSubmit}>
       <button type="submit" onChange={handleSubmit}>업로드</button>
+    </form>
     </>
   );
 };
