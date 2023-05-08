@@ -21,27 +21,26 @@ const FileUpload = () => {
     formData.append('file', file);
 
     // 서버로 데이터 전송
-    axios( {
-      method: 'POST',
-      url: "",
-      data: formData,
+    axios.post('https://132.145.87.252/api/files-test', file, {
+      headers: {
+        'Content-Type': 'audio/mpeg'
+      }
     })
-      .then((result) => {
-        // 응답 처리
+      .then((response) => {
+         // 응답 처리 
         console.log('요청 성공')
-        console.log(result)
+        console.log(response)
       })
       .catch((error) => {
-        // 에러 처리
+        // 예외 처리
         console.log('요청 실패')
         console.log(error)
-      });
+      })
   };
-
   return (
     <form onSubmit={handleSubmit}>
       <input type="file" onChange={handleChange} />
-      <button type="submit">업로드</button>
+      <button type="submit" onChange={handleSubmit}>업로드</button>
     </form>
   );
 };

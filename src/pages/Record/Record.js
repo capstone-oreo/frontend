@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import axios from 'axios';
 
 const AudioRecord = () => {
   const [stream, setStream] = useState();
@@ -85,15 +86,39 @@ const AudioRecord = () => {
     console.log(sound); // File 정보 출력
   };
   const play = ()=>{
-      const audio = new Audio(URL.createObjectURL(audioUrl)); // 😀😀😀
+      const audio = new Audio(URL.createObjectURL(audioUrl)); 
       audio.loop = false;
       audio.volume = 1;
       audio.play();
-  }
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const record = new Audio(URL.createObjectURL(audioUrl)); 
+    const formData = new FormData();
+    formData.append('record', record);
+
+    // 서버로 데이터 전송
+    axios( {
+      method: 'POST',
+      url: "http://132.145.87.252/api/files-test ",
+      data: formData,
+    })
+      .then((result) => {
+        // 응답 처리
+        console.log('요청 성공')
+        console.log(result)
+      })
+      .catch((error) => {
+        // 에러 처리
+        console.log('요청 실패')
+        console.log(error)
+      });
+  };
   return (
     <>
       <button onClick={onRec ? onRecAudio : offRecAudio}>녹음</button>
       <button onClick={play} disabled={disabled}>재생</button>
+      <button type="submit" onChange={handleSubmit}>업로드</button>
     </>
   );
 };
