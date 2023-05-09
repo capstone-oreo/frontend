@@ -1,8 +1,11 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
-import Record from "../pages/Record/Record";
-import FileUpload from '../pages/FileUpload/FileUpload';
-
+import Home from "../pages/HomePage/HomePage";
+import Login from "../pages/LoginPage/LoginPage";
+import Register from "../pages/RegisterPage/RegisterPage";
+import Record from "../pages/RecordPage/RecordPage";
+import FileUpload from '../pages/FileUploadPage/FileUploadPage';
+import History from "../pages/HistoryPage/HistoryPage";
 
 export default function Router() {
   return (
@@ -11,17 +14,30 @@ export default function Router() {
         <NavLink className={({ isActive }) => "nav-link" + (isActive ? " click" : "")} to='/'>
           Home{" "}
         </NavLink>
+        <NavLink className={({ isActive }) => "nav-link" + (isActive ? " click" : "")} to='/login'>
+          로그인{" "}
+        </NavLink>
+        <NavLink className={({ isActive }) => "nav-link" + (isActive ? " click" : "")} to='/register'>
+          회원가입{" "}
+        </NavLink>
         <NavLink className={({ isActive }) => "nav-link" + (isActive ? " click" : "")} to='/record'>
           녹음{" "}
         </NavLink>
         <NavLink className={({ isActive }) => "nav-link" + (isActive ? " click" : "")} to='/upload'>
           파일 업로드
         </NavLink>
+        <NavLink className={({ isActive }) => "nav-link" + (isActive ? " click" : "")} to='/history'>
+          분석기록{" "}
+        </NavLink>
       </nav>
 
       <Routes>
+        <Route path='/Home' element={<Home />} />
+        <Route path='/Home' element={<Login />} />
+        <Route path='/Home' element={<Register />} />
         <Route path='/record' element={<Record />} />
         <Route path='/upload' element={<FileUpload />} />
+        <Route path='/Home' element={<History />} />
       </Routes>
     </BrowserRouter>
   );
