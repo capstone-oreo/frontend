@@ -32,9 +32,9 @@ export default function Router() {
       </nav>
 
       <Routes>
-        <Route path='/Home' element={<Home />} />
-        <Route path='/Home' element={<Login />} />
-        <Route path='/Home' element={<Register />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
         <Route path='/record' element={<Record />} />
         <Route path='/upload' element={<FileUpload />} />
         <Route path='/Home' element={<History />} />
