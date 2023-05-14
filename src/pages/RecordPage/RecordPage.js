@@ -9,6 +9,12 @@ const AudioRecord = () => {
   const [analyser, setAnalyser] = useState();
   const [audioUrl, setAudioUrl] = useState();
   const [disabled, setDisabled] =  useState(true);
+  const [title, setTitle] = useState("");
+
+  // 주제 입력
+  const handleTitle = (e) => {
+    setTitle(e.target.value);
+  }
 
   // 녹음 실행
   const onRecAudio = () => {
@@ -91,6 +97,7 @@ const AudioRecord = () => {
       audio.play();
   };
 
+
   // 녹음 파일을 서버로 전송
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -104,6 +111,9 @@ const AudioRecord = () => {
       .post("/api/files-test", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
+        },
+        params:{
+          title: title,
         },
       })
       .then((response) => {
@@ -120,6 +130,7 @@ const AudioRecord = () => {
     }
   return (
     <>
+      <input type="text" name="title" placeholder="주제를 입력해주세요." value={title} onChange={handleTitle} /> <br></br>
       <button onClick={onRec ? onRecAudio : offRecAudio}>녹음</button>
       <button onClick={play} disabled={disabled}>재생</button>
       <form onSubmit={handleSubmit}>

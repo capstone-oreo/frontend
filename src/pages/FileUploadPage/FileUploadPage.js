@@ -3,6 +3,12 @@ import axios from 'axios';
 
 const FileUpload = () => {
   const [file, setFile] = useState();
+  const [title, setTitle] = useState("");
+
+  // 주제 입력
+  const handleTitle = (e) => {
+    setTitle(e.target.value);
+  }
 
   const handleChange = (e) => {
     // 선택된 파일을 상태에 저장
@@ -26,6 +32,9 @@ const FileUpload = () => {
         headers: {
           "Content-Type": "multipart/form-data",
         },
+        params:{
+          title: title,
+        },
       })
       .then((response) => {
         // 응답 처리
@@ -42,6 +51,7 @@ const FileUpload = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+            <input type="text" name="title" placeholder="주제를 입력해주세요." value={title} onChange={handleTitle} /> <br></br>
       <input type="file" onChange={handleChange} />
       <button type="submit" onChange={handleSubmit}>업로드</button>
     </form>
