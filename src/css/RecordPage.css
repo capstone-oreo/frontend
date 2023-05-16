@@ -1,3 +1,145 @@
-*{
-  color: white
+.speech{
+  position: absolute;
+  left: 5.1%;
+  right: 72.76%;
+  top: 5.74%;
+  bottom: 82.04%;
+
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 100px;
+  line-height: 125px;
+
+  color: #68FF03;
+}
+
+.maru{
+  position: absolute;
+  left: 20.1%;
+  right: 62.81%;
+  top: 11.48%;
+  bottom: 80.65%;
+  
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 70px;
+  line-height: 88px;
+  
+  color: #FFFFFF;
+  
+}
+.message{
+  position: absolute;
+  left: 10.05%;
+  right: 45.21%;
+  top: 50%;
+  bottom: 37.04%;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 93px;
+
+  color: #68FF03;
+
+}
+
+.today-title{
+  position: absolute;
+  left: 24.45%;
+  right: 44.21%;
+  top: 74.31%;
+  bottom: 19.5%;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 52px;
+
+  color: #68FF03;
+}
+
+.title{
+  position: absolute;
+  left: 37.76%;
+  right: 25.57%;
+  top: 76.48%;
+  bottom: 16.76%;
+  width: 704px;
+  height: 73px;
+  
+  background: #68FF03;
+  border-radius: 40px;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 43px;
+
+}
+
+.mike{
+  position: absolute;
+  left: 72.6%;
+  right: 22.81%;
+  top: 77.46%;
+  bottom: 17.65%;
+  width: 88px;
+  height: 73px;
+
+  color: #68FF03;
+}
+
+.stop{
+  position: absolute;
+  left: 72.6%;
+  right: 22.81%;
+  top: 77.46%;
+  bottom: 17.65%;
+  width: 88px;
+  height: 73px;
+
+  color: #68FF03;
+}
+
+
+.play{
+  position: absolute;
+  left: 79.79%;
+  right: 14.69%;
+  top: 77.46%;
+  bottom: 17.65%;
+  width: 88px;
+  height: 73px;
+
+  color: #68FF03;
+}
+
+.submit{
+  position: absolute;
+  left: 86.92%;
+  top: 77.46%;
+  bottom: 17.65%;
+  width: 88px;
+  height: 73px;
+
+  color: #68FF03;
+}
+
+.mike:hover{
+  color:#FFFFFF;
+}
+.stop:hover{
+  color:#FFFFFF;
+}
+.play:hover{
+  color:#FFFFFF;
+}
+.submit:hover{
+  color:#FFFFFF;
 }

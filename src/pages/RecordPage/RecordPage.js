@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import "../../css/RecordPage.css"
+import { AiFillAudio } from "react-icons/ai";
+import { RiStopCircleFill } from "react-icons/ri";
+import { AiFillPlayCircle } from "react-icons/ai";
+import { BsArrowRightCircle } from "react-icons/bs";
 
 const AudioRecord = () => {
   const [stream, setStream] = useState();
@@ -131,11 +135,19 @@ const AudioRecord = () => {
     }
   return (
     <>
-      <input type="text" name="title" placeholder="주제를 입력해주세요." value={title} onChange={handleTitle} /> <br></br>
-      <button onClick={onRec ? onRecAudio : offRecAudio}>녹음</button>
-      <button onClick={play} disabled={disabled}>재생</button>
+      <div className="speech">Speech</div>  
+      <div className="maru">Maru</div>
+      <p className="message"> 발표 연습을 시작해보세요!</p>
+      <p className="today-title">오늘의 발표 주제</p>
+      <input type="text" className="title" name="title" placeholder="주제를 입력해주세요." value={title} onChange={handleTitle} /> <br></br>
+      {onRec ? (
+      <AiFillAudio className="mike" onClick={onRec ? onRecAudio : offRecAudio}></AiFillAudio>
+      ) : (
+        <RiStopCircleFill className="stop" onClick={onRec ? onRecAudio : offRecAudio}></RiStopCircleFill>
+      )}
+      <AiFillPlayCircle className="play" onClick={play} disabled={disabled}></AiFillPlayCircle>
       <form onSubmit={handleSubmit}>
-        <button type="submit" onChange={handleSubmit}>업로드</button>
+        <BsArrowRightCircle className="submit" onClick={handleSubmit}></BsArrowRightCircle>
       </form>
     </>
   );
