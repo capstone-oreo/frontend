@@ -1,0 +1,104 @@
+*{
+  background: #000000;
+}
+
+.speech{
+  position: absolute;
+  width: 921px;
+  left: 151px;
+  top: 62.96%;
+  bottom: 13.06%;
+  
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 200px;
+  line-height: 250px;
+  
+  color: #68FF03;
+
+  transition: all 500ms ease-out;
+}
+
+.maru{
+  position: absolute;
+  width: 622px;
+  left: 998px;
+  top: 50%;
+  bottom: 34.26%;
+  
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 140px;
+  line-height: 175px;
+  
+  color: #FFFFFF;
+  
+}
+
+.left-container{
+  position: absolute;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 50%;
+  float: left;
+  padding: 20px;
+  display: flex;
+}
+
+.left-container:hover{
+  width: 60%;
+}
+
+.left-container .method{
+  display: none;
+  transition: all 3s linear 2s;
+}
+
+.left-container:hover .speech{
+  top: 14.26%;
+  bottom: 61.76%
+}
+
+.left-container:hover .method{
+  display: block;
+}
+
+
+.record{
+  position: absolute;
+  left: 17.08%;
+  right: 64.48%;
+  top: 53.61%;
+  bottom: 40%;
+  width: 354px;
+  height: 69px;
+
+  background: #68FF03;
+  border-radius: 30px;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 55px; 
+}
+
+.file{
+  position: absolute;
+  left: 17.00%;
+  right: 64.53%;
+  top: 63.41%;
+  bottom: 31.2%;
+  width: 354px;
+  height: 69px;
+
+  background: #68FF03;
+  border-radius: 30px;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 55px;
+}
