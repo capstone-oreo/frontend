@@ -1,0 +1,63 @@
+*{
+  background: #000000;
+}
+
+.message{
+  position: absolute;
+  left: 10.05%;
+  right: 45.21%;
+  top: 50%;
+  bottom: 37.04%;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 93px;
+
+  color: #68FF03;
+
+}
+
+.title{
+  position: absolute;
+  left: 37.76%;
+  right: 25.57%;
+  top: 76.48%;
+  bottom: 16.76%;
+
+  background: #68FF03;
+  border-radius: 40px;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 43px;
+
+}
+
+.filebox label {
+  position: absolute;
+  left: 79.32%;
+  right: 13.65%;
+  top: 77.41%;
+  bottom: 17.78%;
+
+  background: #7B7B7B;
+  border-radius: 10px;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 350;
+  font-size: 30px;
+  line-height: 35px;
+  color: #FFFFFF;
+  text-align: center;
+  }
+
+.filebox input[type="file"] {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}

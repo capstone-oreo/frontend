@@ -6,6 +6,7 @@ import Register from "../pages/RegisterPage/RegisterPage";
 import Record from "../pages/RecordPage/RecordPage";
 import FileUpload from '../pages/FileUploadPage/FileUploadPage';
 import History from "../pages/HistoryPage/HistoryPage";
+import "../css/Router.css";
 
 export default function Router() {
   return (
@@ -19,12 +20,6 @@ export default function Router() {
         </NavLink>
         <NavLink className={({ isActive }) => "nav-link" + (isActive ? " click" : "")} to='/register'>
           회원가입{" "}
-        </NavLink>
-        <NavLink className={({ isActive }) => "nav-link" + (isActive ? " click" : "")} to='/record'>
-          녹음{" "}
-        </NavLink>
-        <NavLink className={({ isActive }) => "nav-link" + (isActive ? " click" : "")} to='/upload'>
-          파일 업로드
         </NavLink>
         <NavLink className={({ isActive }) => "nav-link" + (isActive ? " click" : "")} to='/history'>
           분석기록{" "}
