@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "../../css/FileUploadPage.css";
 
 const FileUpload = () => {
   const [file, setFile] = useState();
@@ -28,7 +29,7 @@ const FileUpload = () => {
 
     // 서버로 데이터 전송
     axios
-      .post("/api/files-test", formData, {
+      .post("/api/files", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -50,11 +51,18 @@ const FileUpload = () => {
     }
 
   return (
-    <form onSubmit={handleSubmit}>
-            <input type="text" name="title" placeholder="주제를 입력해주세요." value={title} onChange={handleTitle} /> <br></br>
-      <input type="file" onChange={handleChange} />
-      <button type="submit" onChange={handleSubmit}>업로드</button>
-    </form>
+    <>
+      <p className="message"> 녹음 파일을 업로드 해주세요.</p>
+      <form onSubmit={handleSubmit}>
+              <input type="text" name="title" className="title" placeholder="주제를 입력해주세요." value={title} onChange={handleTitle} /> <br></br>
+
+        <div className="filebox">
+          <label htmlFor="file_upload">파일 선택</label>
+          <input type="file" id="file_upload" onChange={handleChange} />
+          <button type="submit" onChange={handleSubmit}>업로드</button>
+        </div>
+      </form>
+    </>
   );
 };
 

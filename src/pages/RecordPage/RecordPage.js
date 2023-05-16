@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import "../../css/RecordPage.css"
 
 const AudioRecord = () => {
   const [stream, setStream] = useState();
@@ -78,11 +79,11 @@ const AudioRecord = () => {
     if (audioUrl) {
       URL.createObjectURL(audioUrl); // 오디오를 확인할 수 있는 링크
     }
-    
+
     // 콘솔 출력용 코드. 나중에 삭제
-    const sound = new File([audioUrl], "soundBlob", {
+    const sound = new File([audioUrl], "soundBlob.wav", {
       lastModified: new Date().getTime(),
-      type: "audio",
+      type: "audio/wav",
     });
 
     setDisabled(false);
@@ -103,12 +104,12 @@ const AudioRecord = () => {
     e.preventDefault();
     const formData = new FormData();
     // File 생성자를 사용해 파일로 변환
-    const file = new File([audioUrl], "soundBlob", { lastModified: new Date().getTime(), type: "audio" });
+    const file = new File([audioUrl], "soundBlob.wav", { lastModified: new Date().getTime(), type: "audio/wav" });
     formData.append("file", file);
 
     // 서버에 post 요청
     axios
-      .post("/api/files-test", formData, {
+      .post("/api/files", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
