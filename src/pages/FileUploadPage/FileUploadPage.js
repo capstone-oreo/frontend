@@ -23,6 +23,7 @@ const FileUpload = () => {
       alert("음성 파일만 업로드헤주세요.");
     }
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -55,16 +56,18 @@ const FileUpload = () => {
     <>
       <div className="speech">Speech</div>  
       <div className="maru">Maru</div>
-      <p className="message"> 녹음 파일을 업로드 해주세요!</p>
+      <p className="message"> 음성 파일을 업로드 해주세요!</p>
       <p className="today-title">오늘의 발표 주제</p>
       <form onSubmit={handleSubmit}>
-        <input type="text" name="title" className="title" placeholder="주제를 입력해주세요." value={title} onChange={handleTitle} /> <br></br>
-        <div className="filebox">
-          <label htmlFor="file_upload">파일 선택</label>
-          <input type="file" id="file_upload" onChange={handleChange} />
-          <BsArrowRightCircle className="submit" onClick={handleSubmit}></BsArrowRightCircle>
-        </div>
+      <input type="text" className="title" name="title" placeholder="주제를 입력해주세요." value={title} onChange={handleTitle} /> 
+      <div className="filebox">
+        <label htmlFor="file_upload">파일 선택</label>
+        <input type="file" id="file_upload" onChange={handleChange} />
+      </div>
+      
+        <BsArrowRightCircle className="submit" onClick={handleSubmit}></BsArrowRightCircle>
       </form>
+      
     </>
   );
 };

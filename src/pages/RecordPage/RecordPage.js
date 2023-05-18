@@ -139,7 +139,7 @@ const AudioRecord = () => {
       <div className="maru">Maru</div>
       <p className="message"> 발표 연습을 시작해보세요!</p>
       <p className="today-title">오늘의 발표 주제</p>
-      <input type="text" className="title" name="title" placeholder="주제를 입력해주세요." value={title} onChange={handleTitle} /> <br></br>
+      <input type="text" className="title" name="title" placeholder="주제를 입력해주세요." value={title} onChange={handleTitle} /> 
       {onRec ? (
       <AiFillAudio className="mike" onClick={onRec ? onRecAudio : offRecAudio}></AiFillAudio>
       ) : (
