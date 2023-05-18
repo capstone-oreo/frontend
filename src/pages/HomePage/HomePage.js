@@ -11,13 +11,13 @@ export default function Home() {
   return (
     <>
     <div className="left-container">
-      <div className="speech">Speech</div>  
+      <div id="speech">Speech</div>  
       <div className="method">
         <button className="record" onClick={handleClickRecord}>녹음</button>
         <button className="file" onClick={handleClickFile}>파일업로드</button>
       </div>
     </div>
-      <div className="maru">Maru</div>
+      <div id="maru">Maru</div>
     </>
   );
 }

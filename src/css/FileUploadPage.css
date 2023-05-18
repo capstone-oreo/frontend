@@ -1,7 +1,3 @@
-*{
-  background: #000000;
-}
-
 .message{
   position: absolute;
   left: 10.05%;
@@ -19,13 +15,31 @@
 
 }
 
+.today-title{
+  position: absolute;
+  left: 24.45%;
+  right: 44.21%;
+  top: 74.31%;
+  bottom: 19.5%;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 52px;
+
+  color: #68FF03;
+}
+
 .title{
   position: absolute;
   left: 37.76%;
   right: 25.57%;
   top: 76.48%;
   bottom: 16.76%;
-
+  width: 704px;
+  height: 73px;
+  
   background: #68FF03;
   border-radius: 40px;
 
@@ -39,10 +53,11 @@
 
 .filebox label {
   position: absolute;
-  left: 79.32%;
-  right: 13.65%;
-  top: 77.41%;
-  bottom: 17.78%;
+  left: 75.6%;
+  right: 16.81%;
+  top: 77.46%;
+  bottom: 17.65%;
+  height: 73px;
 
   background: #7B7B7B;
   border-radius: 10px;
@@ -50,14 +65,28 @@
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 350;
-  font-size: 30px;
+  font-size: 33px;
   line-height: 35px;
   color: #FFFFFF;
   text-align: center;
+  display: flex;
+  align-items:center;
+    justify-content: center;
   }
 
 .filebox input[type="file"] {
   width: 0;
   height: 0;
   opacity: 0;
+}
+
+.submit{
+  position: absolute;
+  left: 86.92%;
+  top: 77.46%;
+  bottom: 17.65%;
+  width: 88px;
+  height: 73px;
+
+  color: #68FF03;
 }

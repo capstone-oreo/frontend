@@ -2,7 +2,7 @@
   background: #000000;
 }
 
-.speech{
+#speech{
   position: absolute;
   width: 921px;
   left: 151px;
@@ -20,7 +20,7 @@
   transition: all 500ms ease-out;
 }
 
-.maru{
+#maru{
   position: absolute;
   width: 622px;
   left: 998px;
@@ -57,7 +57,7 @@
   transition: all 3s linear 2s;
 }
 
-.left-container:hover .speech{
+.left-container:hover #speech{
   top: 14.26%;
   bottom: 61.76%
 }
