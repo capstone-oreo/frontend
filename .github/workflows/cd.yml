@@ -1,0 +1,83 @@
+name: cd
+
+on:
+  push:
+    branches:
+      - 'master'
+
+
+env:
+  REPOSITORY: frontend
+  ORGANIZATION: capstone-oreo
+
+jobs:
+  push-docker-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "18.x"
+
+       - name: Cache node modules
+        uses: actions/cache@v3
+        id: cache
+        with:
+          # node_modules라는 폴더를 캐시
+          path: "**/node_modules"
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }} 
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm install
+
+      - name: Login GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ env.ORGANIZATION }}
+          password: ${{ secrets.ACCESS_TOKEN }}
+
+       - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build image and push
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          context: .
+          file: ./Dockerfile
+          tags: ghcr.io/${{ env.ORGANIZATION }}/${{ env.REPOSITORY }}:latest
+
+  deploy:
+    needs: [push-docker-image]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Deploy
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.SSH_IP }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            echo ${{ secrets.ACCESS_TOKEN }} | docker login https://ghcr.io -u ${{ env.ORGANIZATION }} --password-stdin
+            docker pull ghcr.io/${{ env.ORGANIZATION }}/${{ env.REPOSITORY }}:latest
+            if [ "$(docker ps -aqf name=react)" ];
+            then
+              echo "> react container 제거"
+              docker stop react && docker rm react
+            else
+              echo "> 구동 중인 react container가 없으므로 종료하지 않습니다."
+            fi
+            docker image prune
+            docker run -itd -p 3000:3000 --name react --network=oreo ghcr.io/${{ env.ORGANIZATION }}/${{ env.REPOSITORY }}
+            docker logout https://ghcr.io
