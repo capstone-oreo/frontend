@@ -1,8 +1,10 @@
-name: CD
+name: cd
+
 on:
   push:
     branches:
-      - master
+      - 'master'
+
 
 env:
   REPOSITORY: frontend
