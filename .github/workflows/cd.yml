@@ -42,4 +42,4 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           source: "./build"
-          target: "~/build"
+          target: "~"
