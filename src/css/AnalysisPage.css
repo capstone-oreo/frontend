@@ -1,0 +1,75 @@
+p{
+  color: #FFFFFF;
+}
+.speech{
+  position: absolute;
+  left: 5.1%;
+  right: 72.76%;
+  top: 5.74%;
+  bottom: 82.04%;
+
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 100px;
+  line-height: 125px;
+
+  color: #68FF03;
+}
+
+.maru{
+  position: absolute;
+  left: 20.1%;
+  right: 62.81%;
+  top: 11.48%;
+  bottom: 80.65%;
+  
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 70px;
+  line-height: 88px;
+  
+  color: #FFFFFF;
+  
+}
+
+.voice-analysis{
+  position: absolute;
+left: 8.96%;
+right: 76.82%;
+top: 26.94%;
+bottom: 69.26%;
+
+font-family: 'M PLUS 1';
+font-style: normal;
+font-weight: 700;
+font-size: 48px;
+line-height: 70px;
+
+color: #68FF03;
+}
+
+.speed, .volume{
+  position: absolute;
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 43px;
+
+  color: #FFFFFF;
+}
+.speed{
+  left: 39.01%;
+  right: 52.03%;
+  top: 24.26%;
+  bottom: 70.09%;
+}
+
+.volume{
+  left: 74.69%;
+  right: 14.17%;
+  top: 23.7%;
+  bottom: 71.85%;
+}

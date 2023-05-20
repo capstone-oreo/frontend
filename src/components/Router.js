@@ -5,6 +5,7 @@ import Login from "../pages/LoginPage/LoginPage";
 import Register from "../pages/RegisterPage/RegisterPage";
 import Record from "../pages/RecordPage/RecordPage";
 import FileUpload from '../pages/FileUploadPage/FileUploadPage';
+import Analysis from "../pages/AnaylsisPage/AnalysisPage";
 import History from "../pages/HistoryPage/HistoryPage";
 import "../css/Router.css";
 
@@ -32,6 +33,7 @@ export default function Router() {
         <Route path='/register' element={<Register />} />
         <Route path='/record' element={<Record />} />
         <Route path='/upload' element={<FileUpload />} />
+        <Route path='/analysis' element={<Analysis/>} />
         <Route path='/Home' element={<History />} />
       </Routes>
     </BrowserRouter>
