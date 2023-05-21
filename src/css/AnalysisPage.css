@@ -1,6 +1,12 @@
 p{
   color: #FFFFFF;
 }
+
+.speech, .maru{
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+}
 .speech{
   position: absolute;
   left: 5.1%;
@@ -8,11 +14,8 @@ p{
   top: 5.74%;
   bottom: 82.04%;
 
-  font-family: 'Lexend';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 100px;
-  line-height: 125px;
+  font-size: 70px;
+  line-height: 86px;
 
   color: #68FF03;
 }
@@ -24,11 +27,8 @@ p{
   top: 11.48%;
   bottom: 80.65%;
   
-  font-family: 'Lexend';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 70px;
-  line-height: 88px;
+  font-size: 50px;
+  line-height: 62px;
   
   color: #FFFFFF;
   

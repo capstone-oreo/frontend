@@ -1,3 +1,9 @@
+.speech, .maru{
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+}
+
 .speech{
   position: absolute;
   left: 5.1%;
@@ -5,9 +11,6 @@
   top: 5.74%;
   bottom: 82.04%;
 
-  font-family: 'Lexend';
-  font-style: normal;
-  font-weight: 400;
   font-size: 100px;
   line-height: 125px;
 
@@ -20,15 +23,11 @@
   right: 62.81%;
   top: 11.48%;
   bottom: 80.65%;
-  
-  font-family: 'Lexend';
-  font-style: normal;
-  font-weight: 400;
+
   font-size: 70px;
   line-height: 88px;
   
   color: #FFFFFF;
-  
 }
 .message{
   position: absolute;
@@ -40,10 +39,10 @@
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 400;
-  font-size: 64px;
+  font-size: 30px;
   line-height: 93px;
 
-  color: #68FF03;
+  color: #FFFFFF;
 
 }
 

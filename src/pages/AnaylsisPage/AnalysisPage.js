@@ -17,7 +17,7 @@ export default function Analysis() {
   useEffect(() => {
     axios.get("/api/records/test", {
       params: {
-        fileId: "129387askdhiuh3"
+        fileId: "fileId"
       }
     })
     .then(function (response) {
