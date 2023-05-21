@@ -52,6 +52,19 @@ color: #68FF03;
   height: 146px;
   width: 532px;
   border-radius: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+#average{
+  color: red;
 }
 
 .speed-details{
