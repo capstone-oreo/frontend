@@ -2,41 +2,9 @@ p{
   color: #FFFFFF;
 }
 
-.speech, .maru{
-  font-family: 'Lexend';
-  font-style: normal;
-  font-weight: 400;
-}
-.speech{
-  position: absolute;
-  left: 5.1%;
-  right: 72.76%;
-  top: 5.74%;
-  bottom: 82.04%;
-
-  font-size: 70px;
-  line-height: 86px;
-
-  color: #68FF03;
-}
-
-.maru{
-  position: absolute;
-  left: 20.1%;
-  right: 62.81%;
-  top: 11.48%;
-  bottom: 80.65%;
-  
-  font-size: 50px;
-  line-height: 62px;
-  
-  color: #FFFFFF;
-  
-}
-
 .voice-analysis{
   position: absolute;
-left: 8.96%;
+left: 5%;
 right: 76.82%;
 top: 26.94%;
 bottom: 69.26%;
@@ -44,7 +12,7 @@ bottom: 69.26%;
 font-family: 'M PLUS 1';
 font-style: normal;
 font-weight: 700;
-font-size: 48px;
+font-size: 33px;
 line-height: 70px;
 
 color: #68FF03;
@@ -52,6 +20,8 @@ color: #68FF03;
 
 .speed, .volume{
   position: absolute;
+  top: 24.26%;
+  bottom: 70.09%;
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 700;
@@ -61,10 +31,8 @@ color: #68FF03;
   color: #FFFFFF;
 }
 .speed{
-  left: 39.01%;
+  left: 35.01%;
   right: 52.03%;
-  top: 24.26%;
-  bottom: 70.09%;
 }
 
 .speed-graph, .volume-graph{
@@ -73,44 +41,39 @@ color: #68FF03;
   position: absolute;
 }
 .speed-graph{
-  left: 28%;
+  left: 18%;
   right: 42.92%;
   top: 35.65%;
-  bottom: 28.98%;
 }
 
 .speed-details, .volume-details{
   position: absolute;
-  top: 74.91%;
-  bottom: 11.57%;
+  top: 93.91%;
   height: 146px;
   width: 532px;
   border-radius: 30px;
 }
 
 .speed-details{
-  left: 29.38%;
+  left: 20%;
   right: 42.92%;
-
   background: #FFF855;
 }
 
 .volume{
-  left: 74.69%;
+  left: 72.69%;
   right: 14.17%;
-  top: 23.7%;
-  bottom: 71.85%;
 }
 
 .volume-graph{
-  left: 65.84%;
+  left: 60%;
   right: 8.18%;
   top: 35.28%;
   bottom: 27.78%;
 }
 
 .volume-details{
-  left: 67.03%;
+  left: 62%;
   right: 5.26%;
   background: #1154FF;
 }
