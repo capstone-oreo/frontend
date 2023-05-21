@@ -1,0 +1,93 @@
+p{
+  color: #FFFFFF;
+}
+
+.voice-analysis{
+  position: absolute;
+left: 5%;
+right: 76.82%;
+top: 26.94%;
+bottom: 69.26%;
+
+font-family: 'M PLUS 1';
+font-style: normal;
+font-weight: 700;
+font-size: 33px;
+line-height: 70px;
+
+color: #68FF03;
+}
+
+.speed, .volume{
+  position: absolute;
+  top: 24.26%;
+  bottom: 70.09%;
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 43px;
+
+  color: #FFFFFF;
+}
+.speed{
+  left: 35.01%;
+  right: 52.03%;
+}
+
+.speed-graph, .volume-graph{
+  height: 300px;
+  color: white;
+  position: absolute;
+}
+.speed-graph{
+  left: 18%;
+  right: 42.92%;
+  top: 35.65%;
+}
+
+.speed-details, .volume-details{
+  position: absolute;
+  top: 93.91%;
+  height: 146px;
+  width: 532px;
+  border-radius: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+#average{
+  color: red;
+}
+
+.speed-details{
+  left: 20%;
+  right: 42.92%;
+  background: #FFF855;
+}
+
+.volume{
+  left: 72.69%;
+  right: 14.17%;
+}
+
+.volume-graph{
+  left: 60%;
+  right: 8.18%;
+  top: 35.28%;
+  bottom: 27.78%;
+}
+
+.volume-details{
+  left: 62%;
+  right: 5.26%;
+  background: #1154FF;
+}
+

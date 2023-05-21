@@ -1,6 +1,11 @@
 *{
   background: #000000;
 }
+.speech, .maru{
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+}
 
 #speech{
   position: absolute;
@@ -12,7 +17,7 @@
   font-family: 'Lexend';
   font-style: normal;
   font-weight: 400;
-  font-size: 200px;
+  font-size: 140px;
   line-height: 250px;
   
   color: #68FF03;
@@ -23,14 +28,14 @@
 #maru{
   position: absolute;
   width: 622px;
-  left: 998px;
+  left: 800px;
   top: 50%;
   bottom: 34.26%;
   
   font-family: 'Lexend';
   font-style: normal;
   font-weight: 400;
-  font-size: 140px;
+  font-size: 100px;
   line-height: 175px;
   
   color: #FFFFFF;
@@ -66,39 +71,32 @@
   display: block;
 }
 
-
-.record{
+.record, .file{
   position: absolute;
-  left: 17.08%;
-  right: 64.48%;
-  top: 53.61%;
-  bottom: 40%;
-  width: 354px;
-  height: 69px;
+  left: 25.00%;
+  right: 64.53%;
+  width: 247px;
+  height: 48px;
 
   background: #68FF03;
   border-radius: 30px;
 
   font-style: normal;
   font-weight: 400;
-  font-size: 38px;
+  font-size: 26.5px;
   line-height: 55px; 
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.record{
+  top: 53.61%;
+  bottom: 40%;
 }
 
 .file{
-  position: absolute;
-  left: 17.00%;
-  right: 64.53%;
   top: 63.41%;
   bottom: 31.2%;
-  width: 354px;
-  height: 69px;
-
-  background: #68FF03;
-  border-radius: 30px;
-
-  font-style: normal;
-  font-weight: 400;
-  font-size: 38px;
-  line-height: 55px;
 }
