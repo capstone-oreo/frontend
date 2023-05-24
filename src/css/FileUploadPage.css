@@ -1,11 +1,4 @@
-.filebox label {
-  position: absolute;
-  left: 75.6%;
-  right: 16.81%;
-  top: 77.46%;
-  bottom: 17.65%;
-  height: 51px;
-
+.filebox label, .filebox-down label {
   background: #7B7B7B;
   border-radius: 10px;
 
@@ -20,8 +13,21 @@
   align-items:center;
     justify-content: center;
   }
+.filebox{
+  position: absolute;
+  left: 75.6%;
+  right: 16.81%;
+  top:75.46%;
+  bottom: 17.65%;
+  height: 51px;
+}
+.filebox-down{
+  position: fixed;
+  top: 89%;
+  left: 650px;
+}
 
-.filebox input[type="file"] {
+.filebox  input[type="file"], .filebox-down input[type="file"] {
   width: 0;
   height: 0;
   opacity: 0;

@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import Graph from "./Graph"
 import "../../css/AnalysisPage.css"
 
 export default function Analysis() {
+  const location = useLocation();
+  const fileId = new URLSearchParams(location.search).get("fileId");
+
   const [data, setData] = useState({
     id: "",
     text: [""],
@@ -14,10 +18,20 @@ export default function Analysis() {
     createdAt:""
   });
 
+  const [test, setTest] = useState({
+    id: "",
+    text: [""],
+    speed: [],
+    volume:[],
+    keyword:[""],
+    habitualWorld:[""],
+    createdAt:""
+  });
+
   useEffect(() => {
-    axios.get("/api/records/test", {
+    axios.get("http://132.145.87.252/api/records/test", {
       params: {
-        fileId: "fileId"
+        fileId: "129387askdhiuh3",
       }
     })
     .then(function (response) {
@@ -29,7 +43,22 @@ export default function Analysis() {
         console.log(error);
       });
     }, []);
-  
+  useEffect(() => {
+    axios.get("http://132.145.87.252/api/records", {
+      params: {
+        fileId: fileId
+      }
+    })
+    .then(function (response) {
+         // 응답 처리  
+        setTest(response.data);
+    }).catch(function (error) {
+        // 예외 처리
+        console.log("요청 실패");
+        console.log(error);
+      });
+    }, []);
+
     const AverageSpeed = ({ data }) => {
       // 배열의 평균값 계산
       const calculateAverage = () => {
@@ -79,10 +108,16 @@ export default function Analysis() {
       <p>{data.id}</p>
       <p>volume: {data.volume[0]}, {data.speed.length}</p>
       <div>
+        {test.text.map((textValue, index) => (
+          <p className="stt">{textValue}</p>
+        ))}
+      </div>
+      <div>
       {data.volume.map((speedValue, index) => (
         <p key={index}>{index} {speedValue}</p>
       ))}
     </div>
+    <div></div>
       <p className="speed">발표 속도</p>
       <div className="speed-graph">
         <Graph data={[

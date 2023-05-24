@@ -1,7 +1,11 @@
 import React from "react";
+import { useMediaQuery } from 'react-responsive';
 import "../../css/HomePage.css";
 
 export default function Home() {
+  const isSmallWidth = useMediaQuery({query: '(max-width:1000px)'});
+  const isSmallHeight = useMediaQuery({query: '(max-height:485px)'});
+
   const handleClickRecord = (e) => {
     window.location.href ="/record";
   }
@@ -10,14 +14,25 @@ export default function Home() {
   }
   return (
     <>
-    <div className="left-container">
-      <div id="speech">Speech</div>  
-      <div className="method">
-        <button className="record" onClick={handleClickRecord}>녹음</button>
-        <button className="file" onClick={handleClickFile}>파일업로드</button>
-      </div>
-    </div>
-      <div id="maru">Maru</div>
+      <div className="left-container">
+        <div id="speech">Speech</div>
+        
+
+        {isSmallWidth !== true && isSmallHeight !== true ?  
+        <div className="method">
+          <button className="record" onClick={handleClickRecord}>녹음</button>
+          <button className="file" onClick={handleClickFile}>파일업로드</button>
+        </div>
+        :
+        
+          <>
+            <div id="speech">Speech</div>
+          </>
+        }
+        </div>
+        <div id="maru">Maru</div>
+  
+    
     </>
   );
 }
