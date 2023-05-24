@@ -1,12 +1,12 @@
 .speech, .maru{
+  position: fixed;
   font-family: 'Lexend';
   font-style: normal;
   font-weight: 400;
 }
 
 .speech{
-  position: absolute;
-  left: 2.1%;
+  left: 30px;
   right: 72.76%;
   top: 5.74%;
   bottom: 82.04%;
@@ -18,8 +18,7 @@
 }
 
 .maru{
-  position: absolute;
-  left: 20.1%;
+  left: 290px;
   right: 62.81%;
   top: 11.48%;
   bottom: 80.65%;
@@ -30,13 +29,9 @@
   color: #FFFFFF;
 }
 
-.message{
-  position: absolute;
-  left: 10.05%;
-  right: 40.21%;
-  top: 50%;
-  bottom: 37.04%;
-
+.message, .message-up{
+  position: fixed;
+  left: 193px;
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 400;
@@ -46,13 +41,17 @@
   color: #68FF03;
 
 }
+.message{
+top:50%;
+}
+.message-up{
+  top:243px;
+}
 
-.today-title{
-  position: absolute;
-  left: 24.45%;
+.today-title, .today-title-up{
+  position: fixed;
+  left:270px;
   right: 44.21%;
-  top: 74.31%;
-  bottom: 19.5%;
 
   font-family: 'Noto Sans KR';
   font-style: normal;
@@ -63,13 +62,20 @@
   color: #68FF03;
 }
 
-.title{
-  position: absolute;
-  left: 37.76%;
+.today-title{
+  top: 70.2%;
+}
+
+.today-title-up{
+  top: 340px;
+}
+
+
+.title, .title-up{
+  position: fixed;
+  left: 470px;
   right: 25.57%;
-  top: 76.48%;
-  bottom: 16.76%;
-  width: 490px;
+  width: 500px;
   height: 50px;
   
   background: #68FF03;
@@ -77,33 +83,66 @@
 
   font-family: 'Noto Sans KR';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 420;
   font-size: 30px;
   line-height: 43px;
 
 }
-.mike, .stop, .play, .submit{
-  position: absolute;
-  top: 77.46%;
-  bottom: 17.65%;
+.title{
+  top: 73.48%;
+}
+.title-up{
+  top:360px;
+}
+
+.mike, .stop, .play, .submit, .mike-down, .stop-down, .play-down, .submit-down{
   width: 61px;
   height: 51px;
   color: #68FF03;
 }
+
 .mike, .stop{
+  position: absolute;
+  top: 74.46%;
+  bottom: 17.65%;
   left: 72.6%;
   right: 22.81%;
 }
 
 .play{
+  position: absolute;
+  top: 74.46%;
+  bottom: 17.65%;
   left: 79.79%;
   right: 14.69%;
 }
 
 .submit{
+  position: absolute;
+  top: 74.46%;
+  bottom: 17.65%;
   left: 86.92%;
 }
 
-.mike:hover, .stop:hover, .play:hover, .submit:hover{
+.mike-down, .stop-down{
+  position: fixed;
+  top: 87%;
+  left: 575px;
+}
+
+.play-down{
+  position: fixed;
+  top: 87%;
+  left: 690px;
+}
+
+.submit-down{
+  position: fixed;
+  top: 87%;
+  left: 805px;
+}
+
+
+.mike:hover, .stop:hover, .play:hover, .submit:hover, .mike-down:hover, .stop-down:hover, .play-down:hover, .submit-down:hover{
   color:#FFFFFF;
 }

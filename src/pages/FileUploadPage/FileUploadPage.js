@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import axios from 'axios';
 import "../../css/FileUploadPage.css";
 import { BsArrowRightCircle } from "react-icons/bs";
 
 const FileUpload = () => {
+  const isSmallWidth = useMediaQuery({query: '(max-width:1350px)'});
+  const isSmallHeight = useMediaQuery({query: '(max-height:485px)'});
+
   const [file, setFile] = useState();
   const [title, setTitle] = useState("");
 
@@ -31,7 +35,7 @@ const FileUpload = () => {
 
     // 서버로 데이터 전송
     axios
-      .post("/api/files", formData, {
+      .post("http://132.145.87.252/api/files", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -53,22 +57,52 @@ const FileUpload = () => {
     }
 
   return (
-    <>
+    <div>
       <div className="speech">Speech</div>  
       <div className="maru">Maru</div>
-      <p className="message"> 음성 파일을 업로드 해주세요!</p>
-      <p className="today-title">오늘의 발표 주제</p>
-      <form onSubmit={handleSubmit}>
-      <input type="text" className="title" name="title" placeholder="주제를 입력해주세요." value={title} onChange={handleTitle} /> 
-      <div className="filebox">
-        <label htmlFor="file_upload">파일 선택</label>
-        <input type="file" id="file_upload" onChange={handleChange} />
+    
+      {isSmallHeight !== true ? 
+          <div>
+        <p className="message"> 음성 파일을 업로드 해주세요!</p>
+        <p className="today-title">오늘의 발표 주제</p>
+        <input type="text" className="title" name="title" placeholder="주제를 입력해주세요." value={title} onChange={handleTitle} /> 
+          </div>
+        :
+        <div>
+            <p className="message-up"> 발표 연습을 시작해보세요!</p>
+            <p className="today-title-up">오늘의 발표 주제</p>
+            <input type="text" className="title-up" name="title" placeholder="주제를 입력해주세요." value={title} onChange={handleTitle} /> 
+          </div>
+      }
+      {isSmallWidth !== true ?
+            <div className="up">            
+                <form onSubmit={handleSubmit}>
+                  <div className="filebox">
+                    <label htmlFor="file_upload">파일 선택</label>
+                    <input type="file" id="file_upload" onChange={handleChange} />
+                  </div>
+                  <BsArrowRightCircle className="submit" onClick={handleSubmit}></BsArrowRightCircle>
+                </form>
+              </div>
+      :
+      <div className="down">
+        {isSmallHeight !== true ?
+          <div>
+          <form onSubmit={handleSubmit}>
+            <div className="filebox-down">
+              <label htmlFor="file_upload">파일 선택</label>
+              <input type="file" id="file_upload" onChange={handleChange} />
+            </div>
+            <BsArrowRightCircle className="submit-down" onClick={handleSubmit}></BsArrowRightCircle>
+          </form>
+          </div>
+          :
+          <></>
+        }
       </div>
-      
-        <BsArrowRightCircle className="submit" onClick={handleSubmit}></BsArrowRightCircle>
-      </form>
-      
-    </>
+          
+      };
+    </div>
   );
 };
 

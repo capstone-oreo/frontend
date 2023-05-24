@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from 'react-responsive';
 import axios from 'axios';
 import "../../css/RecordPage.css"
 import { AiFillAudio } from "react-icons/ai";
@@ -7,6 +9,9 @@ import { AiFillPlayCircle } from "react-icons/ai";
 import { BsArrowRightCircle } from "react-icons/bs";
 
 const AudioRecord = () => {
+  const isSmallWidth = useMediaQuery({query: '(max-width:1350px)'});
+  const isSmallHeight = useMediaQuery({query: '(max-height:485px)'});
+
   const [stream, setStream] = useState();
   const [media, setMedia] = useState();
   const [onRec, setOnRec] = useState(true);
@@ -15,6 +20,8 @@ const AudioRecord = () => {
   const [audioUrl, setAudioUrl] = useState();
   const [disabled, setDisabled] =  useState(true);
   const [title, setTitle] = useState("");
+
+  const navigate = useNavigate();
 
   // 주제 입력
   const handleTitle = (e) => {
@@ -113,7 +120,7 @@ const AudioRecord = () => {
 
     // 서버에 post 요청
     axios
-      .post("/api/files", formData, {
+      .post("http://132.145.87.252/api/files", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -125,6 +132,10 @@ const AudioRecord = () => {
         // 응답 처리
         console.log("요청 성공");
         console.log(response);
+        console.log(formData.id);
+        console.log(file.id);
+        console.log(response.data);
+        navigate(`/analysis?fileId=${response.data}`);
       })
       .catch((error) => {
         // 예외 처리
@@ -134,22 +145,63 @@ const AudioRecord = () => {
       );
     }
   return (
-    <>
-      <div className="speech">Speech</div>  
-      <div className="maru">Maru</div>
-      <p className="message"> 발표 연습을 시작해보세요!</p>
-      <p className="today-title">오늘의 발표 주제</p>
-      <input type="text" className="title" name="title" placeholder="주제를 입력해주세요." value={title} onChange={handleTitle} /> 
-      {onRec ? (
-      <AiFillAudio className="mike" onClick={onRec ? onRecAudio : offRecAudio}></AiFillAudio>
-      ) : (
-        <RiStopCircleFill className="stop" onClick={onRec ? onRecAudio : offRecAudio}></RiStopCircleFill>
-      )}
-      <AiFillPlayCircle className="play" onClick={play} disabled={disabled}></AiFillPlayCircle>
-      <form onSubmit={handleSubmit}>
-        <BsArrowRightCircle className="submit" onClick={handleSubmit}></BsArrowRightCircle>
-      </form>
-    </>
+    <div>
+      
+          <div className="speech">Speech</div>  
+          <div className="maru">Maru</div>
+        {isSmallHeight !== true ? 
+          <div>
+          <p className="message"> 발표 연습을 시작해보세요!</p>
+          <p className="today-title">오늘의 발표 주제</p>
+          <input type="text" className="title" name="title" placeholder="주제를 입력해주세요." value={title} onChange={handleTitle} /> 
+          </div>
+          :
+          <div>
+            <p className="message-up"> 발표 연습을 시작해보세요!</p>
+            <p className="today-title-up">오늘의 발표 주제</p>
+            <input type="text" className="title-up" name="title" placeholder="주제를 입력해주세요." value={title} onChange={handleTitle} /> 
+          </div>
+        }
+          {isSmallWidth === true ?
+            <div className="up">
+            {isSmallHeight !== true ?
+              <div>
+                {onRec ? (
+                <AiFillAudio className="mike" onClick={onRec ? onRecAudio : offRecAudio}></AiFillAudio>
+                ) : (
+                  <RiStopCircleFill className="stop" onClick={onRec ? onRecAudio : offRecAudio}></RiStopCircleFill>
+                )}
+                <AiFillPlayCircle className="play" onClick={play} disabled={disabled}></AiFillPlayCircle>
+                <form onSubmit={handleSubmit}>
+                  <BsArrowRightCircle className="submit" onClick={handleSubmit}></BsArrowRightCircle>
+                </form>
+              </div>
+            
+            :
+            <></>
+            }
+            </div>
+        :
+        <div className="down">
+          {isSmallHeight !== true ?
+          <div>
+          {onRec ? (
+            <AiFillAudio className="mike-down" onClick={onRec ? onRecAudio : offRecAudio}></AiFillAudio>
+            ) : (
+              <RiStopCircleFill className="stop-down" onClick={onRec ? onRecAudio : offRecAudio}></RiStopCircleFill>
+            )}
+            <AiFillPlayCircle className="play-down" onClick={play} disabled={disabled}></AiFillPlayCircle>
+            <form onSubmit={handleSubmit}>
+              <BsArrowRightCircle className="submit-down" onClick={handleSubmit}></BsArrowRightCircle>
+            </form>
+          </div>
+          :
+          <></>
+          }             
+          </div>
+      
+      };
+    </div>
   );
 };
 

@@ -2,20 +2,26 @@ p{
   color: #FFFFFF;
 }
 
+.stt{
+  position: absolute;
+  left: 5%;
+  right: 76.82%;
+  top: 120%;
+}
 .voice-analysis{
   position: absolute;
-left: 5%;
-right: 76.82%;
-top: 26.94%;
-bottom: 69.26%;
+  left: 5%;
+  right: 76.82%;
+  top: 26.94%;
+  bottom: 69.26%;
 
-font-family: 'M PLUS 1';
-font-style: normal;
-font-weight: 700;
-font-size: 33px;
-line-height: 70px;
+  font-family: 'M PLUS 1';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 33px;
+  line-height: 70px;
 
-color: #68FF03;
+  color: #68FF03;
 }
 
 .speed, .volume{
@@ -47,7 +53,7 @@ color: #68FF03;
 }
 
 .speed-details, .volume-details{
-  position: absolute;
+  position: fixed;
   top: 93.91%;
   height: 146px;
   width: 532px;
@@ -91,3 +97,53 @@ color: #68FF03;
   background: #1154FF;
 }
 
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  .voice-analysis {
+    font-size: 5vw;
+    line-height: 8vw;
+  }
+
+  .speed,
+  .volume {
+    font-size: 3.5vw;
+    line-height: 5vw;
+  }
+
+  .speed-graph,
+  .volume-graph {
+    height: 30vw;
+  }
+
+  .speed-details,
+  .volume-details {
+    font-size: 2vw;
+    height: 10vw;
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .voice-analysis {
+    font-size: 7vw;
+    line-height: 10vw;
+  }
+
+  .speed,
+  .volume {
+    font-size: 5vw;
+    line-height: 7vw;
+  }
+
+  .speed-graph,
+  .volume-graph {
+    height: 40vw;
+  }
+
+  .speed-details,
+  .volume-details {
+    font-size: 3vw;
+    height: 14vw;
+    width: 60%;
+  }
+}
