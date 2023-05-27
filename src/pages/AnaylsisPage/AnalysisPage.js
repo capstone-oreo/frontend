@@ -29,7 +29,7 @@ export default function Analysis() {
   });
 
   useEffect(() => {
-    axios.get("http://132.145.87.252/api/records/test", {
+    axios.get("https://speechmaru.kro.kr/api/records/test", {
       params: {
         fileId: "129387askdhiuh3",
       }
@@ -44,7 +44,7 @@ export default function Analysis() {
       });
     }, []);
   useEffect(() => {
-    axios.get("http://132.145.87.252/api/records", {
+    axios.get("https://speechmaru.kro.kr/api/records", {
       params: {
         fileId: fileId
       }
@@ -108,11 +108,6 @@ export default function Analysis() {
       <p>{data.id}</p>
       <p>volume: {data.volume[0]}, {data.speed.length}</p>
       <div>
-        {test.text.map((textValue, index) => (
-          <p className="stt">{textValue}</p>
-        ))}
-      </div>
-      <div>
       {data.volume.map((speedValue, index) => (
         <p key={index}>{index} {speedValue}</p>
       ))}
@@ -153,6 +148,12 @@ export default function Analysis() {
         입니다.
       </div>
       
+      <p className="text-analysis">내용 분석</p>
+      <div className="text">
+        {test.text.map((textValue, index) => (
+          <p className="stt">{textValue}</p>
+        ))}
+      </div>
     </>
   ); 
 }

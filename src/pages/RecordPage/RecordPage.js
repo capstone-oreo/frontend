@@ -120,7 +120,7 @@ const AudioRecord = () => {
 
     // 서버에 post 요청
     axios
-      .post("http://132.145.87.252/api/files", formData, {
+      .post("https://speechmaru.kro.kr/files", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -162,7 +162,7 @@ const AudioRecord = () => {
             <input type="text" className="title-up" name="title" placeholder="주제를 입력해주세요." value={title} onChange={handleTitle} /> 
           </div>
         }
-          {isSmallWidth === true ?
+          {isSmallWidth !== true ?
             <div className="up">
             {isSmallHeight !== true ?
               <div>
