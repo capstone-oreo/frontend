@@ -1,0 +1,113 @@
+.list-container{
+  position: fixed;
+  top: 160px;
+
+  height: 489px;
+  width: 1368px;
+  left: -55px;
+  border-radius: 40px;
+  
+  background: #1154FF;
+  border-radius: 40px;
+}
+
+.list-text{
+position: relative;
+left:100px;
+top: 20px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 29px;
+
+color: #FFFFFF;
+
+  background-color: rgb(5, 5, 5,0);
+
+}
+.content{
+  position: relative;
+width: 852px;
+height: 126px;
+left: 404px;
+top: -65px;
+
+background: #FFFFFF;
+border-radius: 30px;
+}
+
+.content-index, .content-title{
+  font-family: 'Noto Sans KR';
+font-style: normal;
+  background-color: rgb(255, 255, 255, 0);
+  color: black;
+}
+.content-index{
+  position: absolute;
+width: 175px;
+height: 31px;
+left: 40px;
+top: 20px;
+
+font-weight: 700;
+font-size: 24px;
+line-height: 35px;
+}
+.content-title{
+  position: relative;
+  width: 300px;
+  left: 200px;
+  top: 40px;
+  
+font-weight: 400;
+font-size: 30px;
+line-height: 43px;
+
+color: #000000;
+}
+.play-audio, .stop-audio, .go-analysis, .delete-audio{
+  position: relative;
+  height: 48px;
+  top:-35px;
+  border-radius: 0px;
+  color: #78A55A;
+  background-color: rgb(5, 5, 5, 0);
+}
+.play-audio,.stop-audio{
+  left: 500px;
+  height: 48px;
+  width: 48px;
+}
+.go-analysis{
+  left: 550px;
+  height: 52px;
+  width: 52px;
+}
+.delete-audio{
+  left: 600px;
+  top:-40px;
+  height: 43px;
+  width: 43px;
+}
+
+button {
+  color: white;
+  border: 0;
+  background-color: transparent;
+  font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 25px;
+line-height: 30px;
+
+color: #68FF03;
+}
+
+.buttons{
+  position: relative;
+  left: 500px;
+  top:-20px;
+
+}

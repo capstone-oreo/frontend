@@ -235,10 +235,10 @@ export default function Analysis() {
       
       <p className="text-analysis">내용 분석</p>
       <div className="text">
-        {/* .map((textValue, index) => (
+        {test.text.map((textValue, index) => (
           <p className="stt">{textValue}</p>
         
-        ))} */}
+        ))}
 
         <TextColor text= {data.text} keywords={data.keyword} habitualWords={data.habitualWorld}/>
     
