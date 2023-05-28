@@ -1,12 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Lemon&display=swap');
+
 *{
   background: #000000;
 }
-.speech, .maru{
-  font-family: 'Lexend';
-  font-style: normal;
-  font-weight: 400;
-}
+.history{
+  position: absolute;
+left: 81.61%;
+right: 6.41%;
+top: 5%;
+height: 60px;
+width: 200px;
 
+background: #FFF855;
+border-radius: 40px;
+font-family: 'Lemon', cursive;
+font-style: normal;
+font-weight: 300;
+font-size: 24px;
+line-height: 31px;
+/* identical to box height */
+
+display: flex;
+  justify-content: center;
+  align-items: center;
+
+color: #000000;
+cursor: pointer;
+
+}
 #speech{
   position: absolute;
   width: 921px;
@@ -22,6 +43,7 @@
   color: #68FF03;
 
   transition: all 500ms ease-out;
+  cursor: default;
 }
 
 #maru{
@@ -38,6 +60,7 @@
   line-height: 175px;
   
   color: #FFFFFF;
+  cursor: default;
   
 }
 
@@ -88,6 +111,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color:#000000;
+  cursor: pointer;
 }
 
 .record{

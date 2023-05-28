@@ -12,8 +12,12 @@ export default function Home() {
   const handleClickFile = (e) => {
     window.location.href ="/upload";
   }
+  const handleClickHistory = (e) =>{
+    window.location.href ="/history";
+  }
   return (
     <>
+      <div className="history" onClick={handleClickHistory}>history</div>
       <div className="left-container">
         <div id="speech">Speech</div>
         
@@ -31,6 +35,7 @@ export default function Home() {
         }
         </div>
         <div id="maru">Maru</div>
+        
   
     
     </>
