@@ -39,7 +39,7 @@ border-radius: 30px;
 }
 
 .content-index, .content-title{
-  font-family: 'Noto Sans KR';
+  font-family: 'Noto Sans KR', sans-serif;
 font-style: normal;
   background-color: rgb(255, 255, 255, 0);
   color: black;
@@ -106,8 +106,10 @@ color: #68FF03;
 }
 
 .buttons{
-  position: relative;
-  left: 500px;
-  top:-20px;
-
+  position: fixed;
+  height: 41px;
+width: 663px;
+left: 499px;
+top: 660px;
+border-radius: nullpx;
 }

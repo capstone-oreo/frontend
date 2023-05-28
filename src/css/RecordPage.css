@@ -3,15 +3,15 @@
   font-family: 'Lexend';
   font-style: normal;
   font-weight: 400;
+  cursor: pointer;
 }
 
 .speech{
   left: 30px;
   right: 72.76%;
-  top: 5.74%;
   bottom: 82.04%;
 
-  font-size: 80px;
+  font-size: 60px;
   line-height: 125px;
   color: #68FF03;
   background-color: rgb(5, 5, 5,0);
@@ -20,12 +20,12 @@
 }
 
 .maru{
-  left: 290px;
+  left: 220px;
   right: 62.81%;
-  top: 11.48%;
+  top: 7%;
   bottom: 80.65%;
 
-  font-size: 50px;
+  font-size: 40px;
   line-height: 88px;
   
   color: #FFFFFF;
@@ -37,7 +37,7 @@
 .message, .message-up{
   position: fixed;
   left: 193px;
-  font-family: 'Noto Sans KR';
+  font-family: 'Noto Sans KR', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 45px;
@@ -57,7 +57,7 @@ top:50%;
   left:270px;
   right: 44.21%;
 
-  font-family: 'Noto Sans KR';
+  font-family: 'Noto Sans KR', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 25px;
@@ -85,7 +85,7 @@ top:50%;
   background: #68FF03;
   border-radius: 40px;
 
-  font-family: 'Noto Sans KR';
+  font-family: 'Noto Sans KR', sans-serif;
   font-style: normal;
   font-weight: 420;
   font-size: 30px;

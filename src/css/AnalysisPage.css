@@ -3,6 +3,11 @@ p{
   color: #FFFFFF;
 }
 
+.logo{
+  background-color: black;
+  width:150px;
+  height: 100px;
+}
 .voice-analysis, .text-analysis{
   position: relative;
 left: 70px;
@@ -20,12 +25,12 @@ color: #68FF03;
   top: 150px;
 }
 .text-analysis{
-  top:-500px;
+  top:-300px;
 }
 
 .speed, .volume{
   position: relative;
-  font-family: 'Noto Sans KR';
+  font-family: 'Noto Sans KR', sans-serif;  
   font-style: normal;
   font-weight: 700;
   font-size: 30px;
@@ -34,8 +39,8 @@ color: #68FF03;
   color: #FFFFFF;
 }
 .speed{
-  top: -260px;
-  left: 500px;
+  top: -70px;
+  left: 520px;
 }
 
 .speed-graph, .volume-graph{
@@ -44,8 +49,8 @@ color: #68FF03;
   position: relative;
 }
 .speed-graph{
-  top:-260px;
-  left: 290px;
+  top:-80px;
+  left: 310px;
 }
 
 .speed-details, .volume-details{
@@ -58,7 +63,7 @@ color: #68FF03;
   justify-content: center;
   align-items: center;
 
-  font-family: 'Noto Sans KR';
+  font-family: 'Noto Sans KR', sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -69,29 +74,41 @@ color: #68FF03;
 }
 
 .speed-details{
-  top:-130px;
-  left: 310px;
+  top: 40px;
+  left: 330px;
   background: #FFF855;
 }
 
 .volume{
-  top:-810px;
-  left: 1040px;
+  top:-630px;
+  left: 1060px;
 }
 
 .volume-graph{
-  top:-810px;
-  left:860px;
+  top:-630px;
+  left:880px;
 }
 
 .volume-details{
-  top: -680px;
-  left: 880px;
+  top: -510px;
+  left: 900px;
   background: #1154FF;
 }
 
 .text{
   position: relative;
-  top: -600px;
-  left: 300px;
+  top: -450px;
+  left: 330px;
+  height: 442px;
+width: 1050px;
+
+
+font-family: 'Noto Sans KR', sans-serif;
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 43px;
+
+color: #68FF03;
+
 }

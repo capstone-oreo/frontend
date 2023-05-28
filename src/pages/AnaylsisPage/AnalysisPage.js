@@ -100,6 +100,16 @@ export default function Analysis() {
         return (sum / data.length).toFixed(2);
       }
 
+      const Varience = (data)=>{
+        var mean = Average(data);
+        var devTotal = 0;   /* 편차값의 합계 구하기 */
+        for (var i=0; i < data.length; i++){
+            var dev = data[i] - mean;
+            devTotal += dev * dev;
+        }
+        var variance = devTotal/data.length;  
+
+      }
 
     const TextColor = ({text, keywords, habitualWords, color1, color2}) => {
       // 침묵구간 표시
@@ -163,7 +173,7 @@ export default function Analysis() {
                   )
                     :
                     (
-                    <span id={index} style={{color: "white"}}>{part}</span>
+                    <span id={index} style={{color: "68FF03"}}>{part}</span>
                   )
                   )
               )
@@ -171,33 +181,34 @@ export default function Analysis() {
           }));
         };
         
-      const coloredText1 = applyColor(parts, keywords, habitualWords);
+      const coloredText = applyColor(parts, keywords, habitualWords);
       //const coloredText2 = applyColor(script, habitualWords, color2);
     
       return (
         <span>
-          {coloredText1}
+          {coloredText}
         </span>
       )
 
-
-
-    
       
     }
 
+    const clickHome = (e) =>{
+      window.location.href ="/";
+    }
+    const handleClickHistory = (e) =>{
+      window.location.href ="/history";
+    }
   return(
     <>
-      <div className="speech">Speech</div>  
-      <div className="maru">Maru</div>
+    <div className="logo">
+      <div className="speech" onClick={clickHome}>Speech</div>  
+      <div className="maru"onClick={clickHome}>Maru</div>
+      </div>
+      <div className="history" onClick={handleClickHistory}>history</div>
+
       <p className="voice-analysis">목소리 분석</p>
-      <p>{data.id}</p>
-      <p>volume: {data.volume[0]}, {data.speed.length}</p>
-      <div>
-      {data.volume.map((speedValue, index) => (
-        <p key={index}>{index} {speedValue}</p>
-      ))}
-    </div>
+  
       <p className="speed">발표 속도</p>
       <div className="speed-graph">
         <Graph data={[
@@ -239,7 +250,7 @@ export default function Analysis() {
           <p className="stt">{textValue}</p>
         
         ))}
-
+      
         <TextColor text= {data.text} keywords={data.keyword} habitualWords={data.habitualWorld}/>
     
       </div>

@@ -144,11 +144,18 @@ const AudioRecord = () => {
       }
       );
     }
-  return (
-    <div>
-      
-          <div className="speech">Speech</div>  
-          <div className="maru">Maru</div>
+
+    const clickHome = (e) =>{
+      window.location.href ="/";
+    }
+    const handleClickHistory = (e) =>{
+      window.location.href ="/history";
+    }
+  return(
+    <>
+      <div className="speech" onClick={clickHome}>Speech</div>  
+      <div className="maru"onClick={clickHome}>Maru</div>
+      <div className="history" onClick={handleClickHistory}>history</div>
         {isSmallHeight !== true ? 
           <div>
           <p className="message"> 발표 연습을 시작해보세요!</p>
@@ -201,7 +208,7 @@ const AudioRecord = () => {
           </div>
       
       };
-    </div>
+    </>
   );
 };
 
