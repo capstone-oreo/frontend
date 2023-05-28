@@ -35,7 +35,7 @@ const FileUpload = () => {
 
     // 서버로 데이터 전송
     axios
-      .post("http://132.145.87.252/api/files", formData, {
+      .post("https://speechmaru.kro.kr/api/files", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

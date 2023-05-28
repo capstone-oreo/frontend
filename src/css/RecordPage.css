@@ -13,8 +13,10 @@
 
   font-size: 80px;
   line-height: 125px;
-
   color: #68FF03;
+  background-color: rgb(5, 5, 5,0);
+  
+  z-index: 2;
 }
 
 .maru{
@@ -27,6 +29,9 @@
   line-height: 88px;
   
   color: #FFFFFF;
+  background-color: rgb(5, 5, 5,0);
+
+  z-index: 3;
 }
 
 .message, .message-up{
@@ -39,7 +44,6 @@
   line-height: 93px;
 
   color: #68FF03;
-
 }
 .message{
 top:50%;
