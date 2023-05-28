@@ -100,6 +100,92 @@ export default function Analysis() {
         return (sum / data.length).toFixed(2);
       }
 
+
+    const TextColor = ({text, keywords, habitualWords, color1, color2}) => {
+      // 침묵구간 표시
+      let script = "";
+      text.forEach(element => {
+        element +=" (침묵) ";
+        script += element;
+      })
+
+      let parts = [script];
+       //const applyColor = (script, keywords, color) => {
+        // keywords.forEach((keyword) => {
+        //   if  (script.indexOf(keyword)!== -1){
+        //     console.log("keyword", keywords)
+        //     console.log("여기",script.split(keyword))
+        //   }
+        // })
+        
+
+        const applyColor = (parts, keywords, habitualWords) => {
+          keywords.forEach((keyword, index) => {
+            const pattern = new RegExp(`(${keyword})`, "gi");
+            parts = parts.flatMap((part) =>(
+            part.split(pattern).map((subPart, index) => (subPart))
+            )
+          );
+          });
+        
+
+        parts = parts.flatMap((part) =>
+          part.split("(침묵)").flatMap((subPart, index, arr) =>
+            index < arr.length - 1 ? [subPart, "(침묵)"] : [subPart]
+        )
+      );
+      
+      habitualWords.forEach((word, index) => {
+        const pattern = new RegExp(`(${word})`, "gi");
+        parts = parts.flatMap((part) =>(
+        part.split(pattern).map((subPart, index) => (subPart))
+        )
+      );
+      });
+
+          return (parts.map((part, index) => {
+            console.log(parts, part);
+            //console.log(keywords.includes(part));
+            
+            return (keywords.includes(part) ? (
+              <span id={index}  style={{color: "yellow"}}>
+                {part}
+                
+              </span>
+            ) : (
+              (part === "(침묵)")?(
+                <span id={index} style={{color: "skyblue"}}>{part}</span>
+              )
+                :
+                (
+                  habitualWords.includes(part)?(
+                    <span id={index} style={{color: "skyblue"}}>{part}</span>
+                  )
+                    :
+                    (
+                    <span id={index} style={{color: "white"}}>{part}</span>
+                  )
+                  )
+              )
+            )
+          }));
+        };
+        
+      const coloredText1 = applyColor(parts, keywords, habitualWords);
+      //const coloredText2 = applyColor(script, habitualWords, color2);
+    
+      return (
+        <span>
+          {coloredText1}
+        </span>
+      )
+
+
+
+    
+      
+    }
+
   return(
     <>
       <div className="speech">Speech</div>  
@@ -112,7 +198,6 @@ export default function Analysis() {
         <p key={index}>{index} {speedValue}</p>
       ))}
     </div>
-    <div></div>
       <p className="speed">발표 속도</p>
       <div className="speed-graph">
         <Graph data={[
@@ -150,9 +235,13 @@ export default function Analysis() {
       
       <p className="text-analysis">내용 분석</p>
       <div className="text">
-        {test.text.map((textValue, index) => (
+        {/* .map((textValue, index) => (
           <p className="stt">{textValue}</p>
-        ))}
+        
+        ))} */}
+
+        <TextColor text= {data.text} keywords={data.keyword} habitualWords={data.habitualWorld}/>
+    
       </div>
     </>
   ); 

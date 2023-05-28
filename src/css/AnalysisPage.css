@@ -1,33 +1,30 @@
+
 p{
   color: #FFFFFF;
 }
 
-.stt{
-  position: absolute;
-  left: 5%;
-  right: 76.82%;
-  top: 120%;
+.voice-analysis, .text-analysis{
+  position: relative;
+left: 70px;
+
+
+font-family: 'M PLUS 1';
+font-style: normal;
+font-weight: 700;
+font-size: 33px;
+line-height: 70px;
+
+color: #68FF03;
 }
 .voice-analysis{
-  position: absolute;
-  left: 5%;
-  right: 76.82%;
-  top: 26.94%;
-  bottom: 69.26%;
-
-  font-family: 'M PLUS 1';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 33px;
-  line-height: 70px;
-
-  color: #68FF03;
+  top: 150px;
+}
+.text-analysis{
+  top:-500px;
 }
 
 .speed, .volume{
-  position: absolute;
-  top: 24.26%;
-  bottom: 70.09%;
+  position: relative;
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 700;
@@ -37,24 +34,22 @@ p{
   color: #FFFFFF;
 }
 .speed{
-  left: 35.01%;
-  right: 52.03%;
+  top: -260px;
+  left: 500px;
 }
 
 .speed-graph, .volume-graph{
   height: 300px;
   color: white;
-  position: absolute;
+  position: relative;
 }
 .speed-graph{
-  left: 18%;
-  right: 42.92%;
-  top: 35.65%;
+  top:-260px;
+  left: 290px;
 }
 
 .speed-details, .volume-details{
-  position: fixed;
-  top: 93.91%;
+  position: relative;
   height: 146px;
   width: 532px;
   border-radius: 30px;
@@ -74,76 +69,29 @@ p{
 }
 
 .speed-details{
-  left: 20%;
-  right: 42.92%;
+  top:-130px;
+  left: 310px;
   background: #FFF855;
 }
 
 .volume{
-  left: 72.69%;
-  right: 14.17%;
+  top:-810px;
+  left: 1040px;
 }
 
 .volume-graph{
-  left: 60%;
-  right: 8.18%;
-  top: 35.28%;
-  bottom: 27.78%;
+  top:-810px;
+  left:860px;
 }
 
 .volume-details{
-  left: 62%;
-  right: 5.26%;
+  top: -680px;
+  left: 880px;
   background: #1154FF;
 }
 
-/* Media Queries */
-@media screen and (max-width: 768px) {
-  .voice-analysis {
-    font-size: 5vw;
-    line-height: 8vw;
-  }
-
-  .speed,
-  .volume {
-    font-size: 3.5vw;
-    line-height: 5vw;
-  }
-
-  .speed-graph,
-  .volume-graph {
-    height: 30vw;
-  }
-
-  .speed-details,
-  .volume-details {
-    font-size: 2vw;
-    height: 10vw;
-    width: 50%;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .voice-analysis {
-    font-size: 7vw;
-    line-height: 10vw;
-  }
-
-  .speed,
-  .volume {
-    font-size: 5vw;
-    line-height: 7vw;
-  }
-
-  .speed-graph,
-  .volume-graph {
-    height: 40vw;
-  }
-
-  .speed-details,
-  .volume-details {
-    font-size: 3vw;
-    height: 14vw;
-    width: 60%;
-  }
+.text{
+  position: relative;
+  top: -600px;
+  left: 300px;
 }
