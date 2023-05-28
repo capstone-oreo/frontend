@@ -34,7 +34,7 @@ export default function Router() {
         <Route path='/record' element={<Record />} />
         <Route path='/upload' element={<FileUpload />} />
         <Route path='/analysis' element={<Analysis/>} />
-        <Route path='/Home' element={<History />} />
+        <Route path='/history' element={<History />} />
       </Routes>
     </BrowserRouter>
   );
