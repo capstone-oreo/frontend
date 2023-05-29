@@ -122,14 +122,14 @@ const History = () => {
 
   }
   const deleteAnalysis = (index) => {
-    axios.delete(`/api/files/${contentInfo.content[index].id}`, {
-      params: {
-        fileId: contentInfo.content[index].id,
-      }
-    })
+    alert(contentInfo.content[index].title+" 삭제하시겠습니까?");
+    axios.delete(`https://speechmaru.kro.kr/api/files/${contentInfo.content[index].id}` 
+    )
       .then(function (response) {
         // handle success
         console.log(response);
+        alert("삭제되었습니다.")
+        window.location.replace("/history")
       })
       .catch(function (error) {
         // handle error
