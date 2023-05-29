@@ -121,7 +121,7 @@ const AudioRecord = () => {
 
     // 서버에 post 요청
     axios
-      .post("https://speechmaru.kro.kr/files", formData, {
+      .post("https://speechmaru.kro.kr/api/files", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -157,7 +157,7 @@ const AudioRecord = () => {
       <div className="speech" onClick={clickHome}>Speech</div>  
       <div className="maru"onClick={clickHome}>Maru</div>
       <div className="history" onClick={handleClickHistory}>history</div>
-        {isSmallHeight !== true ? 
+        {!isSmallHeight? 
           <div>
           <p className="message"> 발표 연습을 시작해보세요!</p>
           <p className="today-title">오늘의 발표 주제</p>
@@ -170,9 +170,9 @@ const AudioRecord = () => {
             <input type="text" className="title-up" name="title" placeholder="주제를 입력해주세요." value={title} onChange={handleTitle} /> 
           </div>
         }
-          {isSmallWidth !== true ?
+          {!isSmallWidth ?
             <div className="up">
-            {isSmallHeight !== true ?
+            {!isSmallHeight  ?
               <div>
                 {onRec ? (
                 <AiFillAudio className="mike" onClick={onRec ? onRecAudio : offRecAudio}></AiFillAudio>
