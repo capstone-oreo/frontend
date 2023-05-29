@@ -115,7 +115,7 @@ const AudioRecord = () => {
     e.preventDefault();
     const formData = new FormData();
     // File 생성자를 사용해 파일로 변환
-    const file = new File([audioUrl], "soundBlob.wav", { lastModified: new Date().getTime(), type: "audio/wav" });
+    const file = new File([audioUrl], "soundBlob.mp3", { lastModified: new Date().getTime(), type: "audio/mpeg" });
     formData.append("file", file);
 
     // 서버에 post 요청
