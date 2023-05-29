@@ -3,11 +3,15 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import Graph from "./Graph"
 import "../../css/AnalysisPage.css"
+import { RiZoomInLine } from "react-icons/ri";
+
+
+
 
 export default function Analysis() {
   const location = useLocation();
   const fileId = new URLSearchParams(location.search).get("fileId");
-
+  const [isConsistent, setIsConsistent] = useState(true);
   const [data, setData] = useState({
     id: "",
     text: [""],
@@ -85,32 +89,33 @@ export default function Analysis() {
       const divStyle = {
         color: textColor,
         backgroundColor: "transparent",
+        display: "inline"
       };
     
-      return <div style={divStyle}>{average}</div>;
+      return <span style={divStyle}>{average}</span>;
     };
 
-    // 나중에 삭제
-    const Average = ({data}) =>{
-        if (data.length === 0) {
-        return 0;
-        }
+    const Variance = ({data}) =>{
+      const calculateVariance = () => {
+        const mean = data.reduce((acc, curr) => acc + curr, 0) / data.length;
+        const squaredDifferences = data.map(value => Math.pow(value - mean, 2));
+        const v = squaredDifferences.reduce((sum, value) => sum + value, 0) / data.length;
+        return v.toFixed(2);
+      }
+      const variance = calculateVariance();
+      let textColor ="black";
+      if (variance >= 0.5){
+        textColor = "red";
+        setIsConsistent(false);
+      }
+      const divStyle = {
+        color: textColor,
+        backgroundColor: "transparent",
+        display: "inline"
+      };
+      return <span style={divStyle}>{variance}</span>  
+      }
     
-        const sum = data.reduce((acc, curr) => acc + curr, 0);
-        return (sum / data.length).toFixed(2);
-      }
-
-      const Varience = (data)=>{
-        var mean = Average(data);
-        var devTotal = 0;   /* 편차값의 합계 구하기 */
-        for (var i=0; i < data.length; i++){
-            var dev = data[i] - mean;
-            devTotal += dev * dev;
-        }
-        var variance = devTotal/data.length;  
-
-      }
-
     const TextColor = ({text, keywords, habitualWords, color1, color2}) => {
       // 침묵구간 표시
       let script = "";
@@ -221,10 +226,22 @@ export default function Analysis() {
         },
       ]} color={'#FFF855'} id="speed"/> 
       </div>
+      
       <div className="speed-details"> 
+      <div className="details-text">
         발표의 평균 속도는 약 
         <AverageSpeed data={data.speed} />
+        {console.log("속도",data.speed)}
+        입니다. 분산값은 
+        <Variance data = {data.speed}/>
         입니다.
+        
+        {isConsistent? (
+          <span className="variance">발표 속도가 일정합니다.</span>
+        ): (
+          <span className="variance">발표 속도가 일정하지 않습니다.</span>
+        )}
+        </div>
       </div>
       <p className="volume">목소리 크기</p>
       <div className="volume-graph">
@@ -239,9 +256,21 @@ export default function Analysis() {
         ]} color={'#1154FF'} id="volume"/> 
       </div>
       <div className="volume-details">
+        <div className = "details-text">
         발표의 평균 크기는 약  
         <AverageSpeed data={data.volume} />
         입니다.
+        분산값은 
+        <Variance data = {data.volume}/>
+        입니다.
+        <br/>
+        {isConsistent? (
+          <div className="variance">목소리 크기가 일정합니다.</div>
+        ): (
+          <div className="variance">목소리 크기가 일정하지 않습니다.</div>
+        )
+      }
+      </div>
       </div>
       
       <p className="text-analysis">내용 분석</p>
