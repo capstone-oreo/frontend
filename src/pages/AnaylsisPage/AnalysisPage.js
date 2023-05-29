@@ -104,10 +104,12 @@ export default function Analysis() {
       }
       const variance = calculateVariance();
       let textColor ="black";
+      setIsConsistent(true);
       if (variance >= 0.5){
         textColor = "red";
         setIsConsistent(false);
       }
+      
       const divStyle = {
         color: textColor,
         backgroundColor: "transparent",
@@ -236,7 +238,7 @@ export default function Analysis() {
         <Variance data = {data.speed}/>
         입니다.
         
-        {isConsistent? (
+        {!isConsistent? (
           <span className="variance">발표 속도가 일정합니다.</span>
         ): (
           <span className="variance">발표 속도가 일정하지 않습니다.</span>
