@@ -120,7 +120,7 @@ const AudioRecord = () => {
 
     // 서버에 post 요청
     axios
-      .post("https://speechmaru.kro.kr/files", formData, {
+      .post("https://speechmaru.kro.kr/api/files", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
