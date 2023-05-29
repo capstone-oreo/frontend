@@ -58,27 +58,42 @@ color: #68FF03;
   height: 146px;
   width: 532px;
   border-radius: 30px;
+  margin: 0 auto;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   font-family: 'Noto Sans KR', sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
+  display: inline-block;
+  vertical-align: text-bottom;
+  text-align: center;
+}
+.details-text{
+  position: relative;
+  top: 40px;
+  width: 500px;
+  background-color: transparent;
+}
+.speed-details > * {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
 }
 
 #average{
   color: red;
 }
-
 .speed-details{
   top: 40px;
   left: 330px;
-  background: #FFF855;
+  background-color: #FFF855;
 }
 
+.variance{
+  background-color: transparent;
+  display: inline;
+}
 .volume{
   top:-630px;
   left: 1060px;
