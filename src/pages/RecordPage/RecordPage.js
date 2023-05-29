@@ -92,9 +92,9 @@ const AudioRecord = () => {
     }
 
     // 콘솔 출력용 코드. 나중에 삭제
-    const sound = new File([audioUrl], "soundBlob.wav", {
+    const sound = new File([audioUrl], "record.mp3", {
       lastModified: new Date().getTime(),
-      type: "audio/wav",
+      type: "audio/mpeg",
     });
 
     setDisabled(false);
@@ -115,7 +115,8 @@ const AudioRecord = () => {
     e.preventDefault();
     const formData = new FormData();
     // File 생성자를 사용해 파일로 변환
-    const file = new File([audioUrl], "soundBlob.mp3", { lastModified: new Date().getTime(), type: "audio/mpeg" });
+    const file = new File([audioUrl], "record.mp3", { lastModified: new Date().getTime(), type: "audio/mpeg" });
+    console.log(file);
     formData.append("file", file);
 
     // 서버에 post 요청
