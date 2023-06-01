@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import Graph from "./Graph"
+import Graph from "./Graph";
+import Loading from "../LoadingPage/LoadingPage";
 import "../../css/AnalysisPage.css"
-import { RiZoomInLine } from "react-icons/ri";
-
-
-
 
 export default function Analysis() {
+  const [loading, setLoading] = useState(true);
   const location = useLocation();
   const fileId = new URLSearchParams(location.search).get("fileId");
   const [isConsistent, setIsConsistent] = useState(true);
@@ -18,7 +16,7 @@ export default function Analysis() {
     speed: [],
     volume:[],
     keyword:[""],
-    habitualWorld:[""],
+    habitualWord:[""],
     createdAt:""
   });
 
@@ -28,25 +26,29 @@ export default function Analysis() {
     speed: [],
     volume:[],
     keyword:[""],
-    habitualWorld:[""],
+    habitualWord:[""],
     createdAt:""
   });
 
   useEffect(() => {
     axios.get("https://speechmaru.kro.kr/api/records/test", {
       params: {
-        fileId: "129387askdhiuh3",
+        fileId: fileId,
       }
     })
     .then(function (response) {
          // 응답 처리  
+        console.log("요청 성공");
+        console.log(fileId);
         setData(response.data);
+        setLoading(false);
     }).catch(function (error) {
         // 예외 처리
         console.log("요청 실패");
         console.log(error);
       });
     }, []);
+
   useEffect(() => {
     axios.get("https://speechmaru.kro.kr/api/records", {
       params: {
@@ -56,6 +58,7 @@ export default function Analysis() {
     .then(function (response) {
          // 응답 처리  
         setTest(response.data);
+        setLoading(false);
     }).catch(function (error) {
         // 예외 처리
         console.log("요청 실패");
@@ -64,18 +67,19 @@ export default function Analysis() {
     }, []);
 
     const AverageSpeed = ({ data }) => {
-      // 배열의 평균값 계산
-      const calculateAverage = () => {
+        if(!loading){
+        // 배열의 평균값 계산
+        const calculateAverage = () => {
         if (data.length === 0) {
           return 0;
         }
-    
+
         const sum = data.reduce((acc, curr) => acc + curr, 0);
         return (sum / data.length).toFixed(2);
-      };
-    
+        };
+
       const average = calculateAverage();
-    
+
       // 평균 값에 따라 색상 지정
       let textColor = "";
       if (average > 4) {
@@ -91,40 +95,46 @@ export default function Analysis() {
         backgroundColor: "transparent",
         display: "inline"
       };
-    
+
       return <span style={divStyle}>{average}</span>;
-    };
+    }
+}
+      
 
     const Variance = ({data}) =>{
-      const calculateVariance = () => {
-        const mean = data.reduce((acc, curr) => acc + curr, 0) / data.length;
-        const squaredDifferences = data.map(value => Math.pow(value - mean, 2));
-        const v = squaredDifferences.reduce((sum, value) => sum + value, 0) / data.length;
-        return v.toFixed(2);
+      if(!loading){
+        const calculateVariance = () => {
+          const mean = data.reduce((acc, curr) => acc + curr, 0) / data.length;
+          const squaredDifferences = data.map(value => Math.pow(value - mean, 2));
+          const v = squaredDifferences.reduce((sum, value) => sum + value, 0) / data.length;
+          return v.toFixed(2);
+        }
+        const variance = calculateVariance();
+        let textColor ="black";
+        setIsConsistent(true);
+        if (variance >= 0.5){
+          textColor = "red";
+          setIsConsistent(false);
+        }
+        
+        const divStyle = {
+          color: textColor,
+          backgroundColor: "transparent",
+          display: "inline"
+        };
+        return <span style={divStyle}>{variance}</span>  
       }
-      const variance = calculateVariance();
-      let textColor ="black";
-      setIsConsistent(true);
-      if (variance >= 0.5){
-        textColor = "red";
-        setIsConsistent(false);
-      }
-      
-      const divStyle = {
-        color: textColor,
-        backgroundColor: "transparent",
-        display: "inline"
-      };
-      return <span style={divStyle}>{variance}</span>  
       }
     
     const TextColor = ({text, keywords, habitualWords, color1, color2}) => {
       // 침묵구간 표시
       let script = "";
-      text.forEach(element => {
+      text.forEach((element, index) => {
+        console.log('침묵', element)
         element +=" (침묵) ";
         script += element;
-      })
+      });
+      console.log("text", text);
 
       let parts = [script];
        //const applyColor = (script, keywords, color) => {
@@ -137,8 +147,10 @@ export default function Analysis() {
         
 
         const applyColor = (parts, keywords, habitualWords) => {
-          keywords.forEach((keyword, index) => {
-            const pattern = new RegExp(`(${keyword})`, "gi");
+          console.log("키워드", keywords);
+          keywords.forEach((element, index) => {
+            console.log("key-e", element)
+            const pattern = new RegExp(`(${element})`, "gi");
             parts = parts.flatMap((part) =>(
             part.split(pattern).map((subPart, index) => (subPart))
             )
@@ -151,8 +163,10 @@ export default function Analysis() {
             index < arr.length - 1 ? [subPart, "(침묵)"] : [subPart]
         )
       );
-      
+      console.log('습관', habitualWords)
+
       habitualWords.forEach((word, index) => {
+        console.log('습관', habitualWords)
         const pattern = new RegExp(`(${word})`, "gi");
         parts = parts.flatMap((part) =>(
         part.split(pattern).map((subPart, index) => (subPart))
@@ -190,7 +204,7 @@ export default function Analysis() {
         
       const coloredText = applyColor(parts, keywords, habitualWords);
       //const coloredText2 = applyColor(script, habitualWords, color2);
-    
+    console.log('full',parts);
       return (
         <span>
           {coloredText}
@@ -208,6 +222,8 @@ export default function Analysis() {
     }
   return(
     <>
+    {loading ? <Loading /> :(
+      <>
     <div className="logo">
       <div className="speech" onClick={clickHome}>Speech</div>  
       <div className="maru"onClick={clickHome}>Maru</div>
@@ -277,14 +293,16 @@ export default function Analysis() {
       
       <p className="text-analysis">내용 분석</p>
       <div className="text">
-        {test.text.map((textValue, index) => (
-          <p className="stt">{textValue}</p>
+        {test.text.forEach((textValue, index) => (
+          <p ke={index} className="stt">{textValue}</p>
         
         ))}
       
-        <TextColor text= {data.text} keywords={data.keyword} habitualWords={data.habitualWorld}/>
+        <TextColor text= {data.text} keywords={data.keyword} habitualWords={data.habitualWord}/>
     
       </div>
+      </>
+    )}
     </>
   ); 
 }
