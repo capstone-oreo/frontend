@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom"
 import { useMediaQuery } from 'react-responsive';
 import axios from 'axios';
+import Loading from "../LoadingPage/LoadingPage";
 import "../../css/FileUploadPage.css";
 import { BsArrowRightCircle } from "react-icons/bs";
 
 const FileUpload = () => {
+  const [loading, setLoading] = useState(false);
+
   const isSmallWidth = useMediaQuery({query: '(max-width:1350px)'});
   const isSmallHeight = useMediaQuery({query: '(max-height:485px)'});
 
   const [file, setFile] = useState();
   const [title, setTitle] = useState("");
 
+  const navigate = useNavigate();
+
+  
   // 주제 입력
   const handleTitle = (e) => {
     setTitle(e.target.value);
@@ -29,6 +36,7 @@ const FileUpload = () => {
   };
 
   const handleSubmit = (e) => {
+    setLoading(true);
     e.preventDefault();
     const formData = new FormData();
     formData.append("file", file);
@@ -47,6 +55,9 @@ const FileUpload = () => {
         // 응답 처리
         console.log("요청 성공");
         console.log(response);
+        setLoading(false);
+        navigate(`/analysis?fileId=${response.data}`);
+
       })
       .catch((error) => {
         // 예외 처리
@@ -63,6 +74,8 @@ const FileUpload = () => {
     }
   return(
     <>
+    {!loading ? (
+      <div>
       <div className="speech" onClick={clickHome}>Speech</div>  
       <div className="maru"onClick={clickHome}>Maru</div>
       <div className="history" onClick={handleClickHistory}>history</div>
@@ -108,6 +121,10 @@ const FileUpload = () => {
       </div>
           
       };
+  </div>
+    ):(
+      <Loading/>
+    ) }
     </>
   );
 };

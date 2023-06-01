@@ -1,0 +1,17 @@
+.loading{
+  display: block;
+  position: absolute;
+  top:35%;
+  right: 40%;
+text-align: center;
+align-items: center;
+
+}
+.loading-text{
+  color: #68FF03;
+  font-weight: 400;
+font-size: 30px;
+line-height: 70px;
+position: relative;
+left:-60px;
+}

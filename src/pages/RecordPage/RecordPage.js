@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive';
 import axios from 'axios';
-import "../../css/RecordPage.css"
+import Loading from "../LoadingPage/LoadingPage";
+import "../../css/RecordPage.css";
 import { AiFillAudio } from "react-icons/ai";
 import { RiStopCircleFill } from "react-icons/ri";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { BsArrowRightCircle } from "react-icons/bs";
 
 const AudioRecord = () => {
+  const [loading, setLoading] = useState(false);
+
   const isSmallWidth = useMediaQuery({query: '(max-width:1350px)'});
   const isSmallHeight = useMediaQuery({query: '(max-height:485px)'});
 
@@ -107,11 +110,13 @@ const AudioRecord = () => {
       audio.loop = false;
       audio.volume = 1;
       audio.play();
+      console.log(URL.createObjectURL(audioUrl));
   };
 
 
   // 녹음 파일을 서버로 전송
   const handleSubmit = (e) => {
+    setLoading(true);
     e.preventDefault();
     const formData = new FormData();
     // File 생성자를 사용해 파일로 변환
@@ -153,6 +158,8 @@ const AudioRecord = () => {
       window.location.href ="/history";
     }
   return(
+    <>
+    {!loading ? (
     <>
       <div className="speech" onClick={clickHome}>Speech</div>  
       <div className="maru"onClick={clickHome}>Maru</div>
@@ -209,6 +216,10 @@ const AudioRecord = () => {
           </div>
       
       };
+    </>
+    ):(
+      <Loading/>
+    ) }
     </>
   );
 };
