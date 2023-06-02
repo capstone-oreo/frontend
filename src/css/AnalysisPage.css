@@ -3,6 +3,9 @@ p{
   color: #FFFFFF;
 }
 
+li, span{
+  background: transparent;
+}
 .logo{
   background-color: black;
   width:150px;
@@ -52,6 +55,14 @@ color: #68FF03;
   top:-80px;
   left: 310px;
 }
+.speed-details, .volume-details, .text-details{
+  font-family: 'Noto Sans KR', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  display: inline-block;
+  
+}
 
 .speed-details, .volume-details{
   position: relative;
@@ -59,23 +70,13 @@ color: #68FF03;
   width: 532px;
   border-radius: 30px;
   margin: 0 auto;
-
-
-  font-family: 'Noto Sans KR', sans-serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
-  display: inline-block;
-  vertical-align: text-bottom;
-  text-align: center;
 }
-.details-text{
+li, .details-text{
   position: relative;
-  top: 40px;
   width: 500px;
   background-color: transparent;
 }
-.speed-details > * {
+.speed-details, .volume-details{
   display: inline-block;
   vertical-align: middle;
   text-align: center;
@@ -109,12 +110,12 @@ color: #68FF03;
   left: 900px;
   background: #1154FF;
 }
-
-.text{
+.text-box{
   position: relative;
   top: -450px;
-  left: 330px;
-  height: 442px;
+  left: 300px;
+}
+.text{
 width: 1050px;
 
 
@@ -126,4 +127,19 @@ line-height: 43px;
 
 color: #68FF03;
 
+}
+
+.text-details{
+  height: 180px;
+  width: 1000px;
+  border-radius: 30px;
+  margin: 0 auto;
+
+  left: 350px;
+  background: #68FF03;
+}
+.text-list{
+  position: absolute;
+  left: 30px;
+  background: transparent;
 }
