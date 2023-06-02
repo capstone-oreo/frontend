@@ -10,12 +10,14 @@ export default function Analysis() {
   const location = useLocation();
   const fileId = new URLSearchParams(location.search).get("fileId");
   const [isConsistent, setIsConsistent] = useState(true);
+  const [count, setCount] = useState();
   const [data, setData] = useState({
     id: "",
     text: [""],
     speed: [],
     volume:[],
     keyword:[""],
+    textInfo:[],
     habitualWord:[""],
     createdAt:""
   });
@@ -26,6 +28,7 @@ export default function Analysis() {
     speed: [],
     volume:[],
     keyword:[""],
+    textInfo:[],
     habitualWord:[""],
     createdAt:""
   });
@@ -129,6 +132,7 @@ export default function Analysis() {
     const TextColor = ({text, keywords, habitualWords, color1, color2}) => {
       // 침묵구간 표시
       let script = "";
+      setCount(text.length+1);
       text.forEach((element, index) => {
         console.log('침묵', element)
         element +=" (침묵) ";
@@ -247,17 +251,14 @@ export default function Analysis() {
       
       <div className="speed-details"> 
       <div className="details-text">
-        발표의 평균 속도는 약 
-        <AverageSpeed data={data.speed} />
-        {console.log("속도",data.speed)}
-        입니다. 분산값은 
-        <Variance data = {data.speed}/>
-        입니다.
+        <br />
+      <li>발화 평균 속도: <AverageSpeed data={data.speed} /></li>
+        <li> 발화 속도 분산:  <Variance data = {data.speed}/></li>
         
         {!isConsistent? (
-          <span className="variance">발표 속도가 일정합니다.</span>
+          <span className="variance">발화 속도가 일정합니다.</span>
         ): (
-          <span className="variance">발표 속도가 일정하지 않습니다.</span>
+          <span className="variance">발화 속도가 일정하지 않습니다.</span>
         )}
         </div>
       </div>
@@ -275,13 +276,9 @@ export default function Analysis() {
       </div>
       <div className="volume-details">
         <div className = "details-text">
-        발표의 평균 크기는 약  
-        <AverageSpeed data={data.volume} />
-        입니다.
-        분산값은 
-        <Variance data = {data.volume}/>
-        입니다.
-        <br/>
+          <br/>
+          <li>목소리 평균 크기: <AverageSpeed data={data.volume} /></li>
+        <li> 목소리 크기 분산:  <Variance data = {data.volume}/></li>
         {isConsistent? (
           <div className="variance">목소리 크기가 일정합니다.</div>
         ): (
@@ -292,14 +289,29 @@ export default function Analysis() {
       </div>
       
       <p className="text-analysis">내용 분석</p>
-      <div className="text">
-        {test.text.forEach((textValue, index) => (
-          <p ke={index} className="stt">{textValue}</p>
-        
-        ))}
-      
-        <TextColor text= {data.text} keywords={data.keyword} habitualWords={data.habitualWord}/>
-    
+      <div className="text-box">
+        <div className="text">
+          <TextColor text= {data.text} keywords={data.keyword} habitualWords={data.habitualWord}/><br/>
+          <TextColor text= {test.text} keywords={test.keyword} habitualWords={test.habitualWord}/>
+        </div>
+        <br/>
+        <div className="text-details">
+          <div className="text-list">
+            <br/>
+          <li>총 문장 개수: {data.textInfo[0]}</li>
+          <li>길이가 긴 문장 개수: {data.textInfo[1]}</li>
+          <li>핵심 키워드: {data.keyword.map((value, index)=>(
+        <span className="details-text" key={index} >{value} 
+        {(index < data.keyword.length-1)?
+        (<span>,</span>):null} </span>
+      ))}</li>
+      <li>자주 사용된 단어: {data.habitualWord.map((value, index)=>(
+        <span className="details-text" key={index} >{value} 
+        {(index < data.habitualWord.length-1)?
+        (<span>,</span>):null} </span>
+      ))}</li>
+        </div>
+        </div>
       </div>
       </>
     )}
