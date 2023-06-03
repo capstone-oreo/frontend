@@ -294,7 +294,7 @@ export default function Analysis() {
           <TextColor text= {data.text} keywords={data.keyword} habitualWords={data.habitualWord}/><br/>
           <TextColor text= {test.text} keywords={test.keyword} habitualWords={test.habitualWord}/>
         </div>
-        <br/>
+        <br/> <br/>
         <div className="text-details">
           <div className="text-list">
             <br/>

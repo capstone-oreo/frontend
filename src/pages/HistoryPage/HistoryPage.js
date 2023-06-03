@@ -141,14 +141,11 @@ const History = () => {
   const clickHome = (e) =>{
     window.location.href ="/";
   }
-  const handleClickHistory = (e) =>{
-    window.location.href ="/history";
-  }
+
 return(
   <>
     <div className="speech" onClick={clickHome}>Speech</div>  
     <div className="maru"onClick={clickHome}>Maru</div>
-    <div className="history" onClick={handleClickHistory}>history</div>
       <div className="list-container">
       <p className="list-text">발표 목록</p>
     {contentInfo.content.map((product, index) =>(
