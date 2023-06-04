@@ -122,7 +122,7 @@ const History = () => {
 
   }
   const deleteAnalysis = (index) => {
-    alert(contentInfo.content[index].title+" 삭제하시겠습니까?");
+    //if(confirm(contentInfo.content[index].title+" 삭제하시겠습니까?")){
     axios.delete(`https://speechmaru.kro.kr/api/files/${contentInfo.content[index].id}` 
     )
       .then(function (response) {
@@ -135,6 +135,8 @@ const History = () => {
         // handle error
         console.log(error);
       });
+    //}
+
 
   }
 
