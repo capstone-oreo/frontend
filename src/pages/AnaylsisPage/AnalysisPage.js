@@ -104,11 +104,9 @@ export default function Analysis() {
       let script = "";
       setCount(text.length+1);
       text.forEach((element, index) => {
-        console.log('침묵', element)
         element +=" (침묵) ";
         script += element;
       });
-      console.log("text", text);
 
       let parts = [script];
        //const applyColor = (script, keywords, color) => {
@@ -121,9 +119,7 @@ export default function Analysis() {
         
 
         const applyColor = (parts, keywords, habitualWords) => {
-          console.log("키워드", keywords);
           keywords.forEach((element, index) => {
-            console.log("key-e", element)
             const pattern = new RegExp(`(${element})`, "gi");
             parts = parts.flatMap((part) =>(
             part.split(pattern).map((subPart, index) => (subPart))
@@ -137,11 +133,8 @@ export default function Analysis() {
             index < arr.length - 1 ? [subPart, "(침묵)"] : [subPart]
         )
       );
-      console.log('습관', habitualWords)
 
-      habitualWords.forEach((word, index) => {
-        console.log('습관', habitualWords)
-        const pattern = new RegExp(`(${word})`, "gi");
+      habitualWords.forEach((word, index) => {        const pattern = new RegExp(`(${word})`, "gi");
         parts = parts.flatMap((part) =>(
         part.split(pattern).map((subPart, index) => (subPart))
         )
@@ -149,7 +142,6 @@ export default function Analysis() {
       });
 
           return (parts.map((part, index) => {
-            console.log(parts, part);
             //console.log(keywords.includes(part));
             
             return (keywords.includes(part) ? (
@@ -178,7 +170,6 @@ export default function Analysis() {
         
       const coloredText = applyColor(parts, keywords, habitualWords);
       //const coloredText2 = applyColor(script, habitualWords, color2);
-    console.log('full',parts);
       return (
         <span>
           {coloredText}
