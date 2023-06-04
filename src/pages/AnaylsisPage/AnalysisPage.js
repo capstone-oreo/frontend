@@ -22,36 +22,6 @@ export default function Analysis() {
     createdAt:""
   });
 
-  const [test, setTest] = useState({
-    id: "",
-    text: [""],
-    speed: [],
-    volume:[],
-    keyword:[""],
-    textInfo:[],
-    habitualWord:[""],
-    createdAt:""
-  });
-
-  useEffect(() => {
-    axios.get("https://speechmaru.kro.kr/api/records/test", {
-      params: {
-        fileId: fileId,
-      }
-    })
-    .then(function (response) {
-         // 응답 처리  
-        console.log("요청 성공");
-        console.log(fileId);
-        setData(response.data);
-        setLoading(false);
-    }).catch(function (error) {
-        // 예외 처리
-        console.log("요청 실패");
-        console.log(error);
-      });
-    }, []);
-
   useEffect(() => {
     axios.get("https://speechmaru.kro.kr/api/records", {
       params: {
@@ -60,7 +30,7 @@ export default function Analysis() {
     })
     .then(function (response) {
          // 응답 처리  
-        setTest(response.data);
+        setData(response.data);
         setLoading(false);
     }).catch(function (error) {
         // 예외 처리
@@ -292,7 +262,6 @@ export default function Analysis() {
       <div className="text-box">
         <div className="text">
           <TextColor text= {data.text} keywords={data.keyword} habitualWords={data.habitualWord}/><br/>
-          <TextColor text= {test.text} keywords={test.keyword} habitualWords={test.habitualWord}/>
         </div>
         <br/> <br/>
         <div className="text-details">
