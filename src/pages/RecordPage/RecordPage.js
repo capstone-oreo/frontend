@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive';
 import axios from 'axios';
@@ -23,6 +23,7 @@ const AudioRecord = () => {
   const [audioUrl, setAudioUrl] = useState();
   const [disabled, setDisabled] =  useState(true);
   const [title, setTitle] = useState("");
+  const [isPlaying, setIsPlaying] =  useState(false);
 
   const navigate = useNavigate();
 
@@ -103,14 +104,27 @@ const AudioRecord = () => {
     setDisabled(false);
     console.log(sound); // File 정보 출력
   };
-
+  const audioRef = useRef(null);
   // 녹음된 파일 재생
-  const play = ()=>{
-      const audio = new Audio(URL.createObjectURL(audioUrl)); 
-      audio.loop = false;
-      audio.volume = 1;
+  const play = ()=>{ 
+    const audio = new Audio(URL.createObjectURL(audioUrl)); 
+    audio.loop = false;
+    audio.volume = 1;
+  
+    if (audioRef.current && audioRef.current.play && isPlaying) {
+      // 이미 재생 중인 오디오를 클릭한 경우
+      audioRef.current.pause();
+    } else {
+      // 새로운 오디오를 클릭한 경우 또는 다른 오디오를 클릭한 경우
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
       audio.play();
-      console.log(URL.createObjectURL(audioUrl));
+  
+      audioRef.current = audio;
+    }
+  
+    setIsPlaying(!isPlaying);
   };
 
 
@@ -186,7 +200,12 @@ const AudioRecord = () => {
                 ) : (
                   <RiStopCircleFill className="stop" onClick={onRec ? onRecAudio : offRecAudio}></RiStopCircleFill>
                 )}
-                <AiFillPlayCircle className="play" onClick={play} disabled={disabled}></AiFillPlayCircle>
+                {(isPlaying)?(
+          <RiStopCircleFill className="play" onClick={()=>play()} />
+        ) : (
+          <AiFillPlayCircle className="play" onClick={()=>play()}/>
+        )
+        }
                 <form onSubmit={handleSubmit}>
                   <BsArrowRightCircle className="submit" onClick={handleSubmit}></BsArrowRightCircle>
                 </form>
