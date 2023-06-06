@@ -25,6 +25,12 @@ const FileUpload = () => {
   }
 
   const handleChange = (e) => {
+    if (title.trim() === "") {
+      alert("주제를 입력해주세요.");
+      setLoading(false);
+      setCondititon(false);
+      return;
+    }
     // 선택된 파일을 상태에 저장
     const selectedFile = e.target.files[0];
     if (selectedFile && selectedFile.type === "audio/mpeg") { // 오디오 파일 필터링.. 다른 형식도
@@ -37,12 +43,7 @@ const FileUpload = () => {
   };
 
   const handleSubmit = (e) => {
-    if (title.trim() === "") {
-      alert("주제를 입력해주세요.");
-      setLoading(false);
-      setCondititon(false);
-      return;
-    }
+    
     if(condition){
     setLoading(true);
     e.preventDefault();
