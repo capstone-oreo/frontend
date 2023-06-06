@@ -54,17 +54,9 @@ export default function Analysis() {
       const average = calculateAverage();
 
       // 평균 값에 따라 색상 지정
-      let textColor = "";
-      if (average > 4) {
-        textColor = "red";
-      } else if (average > 2) {
-        textColor = "orange";
-      } else {
-        textColor = "gray";
-      }
+      
 
       const divStyle = {
-        color: textColor,
         backgroundColor: "transparent",
         display: "inline"
       };
@@ -73,38 +65,43 @@ export default function Analysis() {
     }
 }
       
+const StandardDeviation = ({ data }) => {
+  if (data.length > 0) {
+    const calculateStandardDeviation = () => {
+      const mean = data.reduce((acc, curr) => acc + curr, 0) / data.length;
+      const squaredDifferences = data.map(value => Math.pow(value - mean, 2));
+      const variance = squaredDifferences.reduce((sum, value) => sum + value, 0) / data.length;
+      const standardDeviation = Math.sqrt(variance);
+      return standardDeviation.toFixed(2);
+    };
 
-    const Variance = ({data}) =>{
-      if(!loading){
-        const calculateVariance = () => {
-          const mean = data.reduce((acc, curr) => acc + curr, 0) / data.length;
-          const squaredDifferences = data.map(value => Math.pow(value - mean, 2));
-          const v = squaredDifferences.reduce((sum, value) => sum + value, 0) / data.length;
-          return v.toFixed(2);
-        }
-        const variance = calculateVariance();
-        let textColor ="black";
-        setIsConsistent(true);
-        if (variance >= 0.5){
-          textColor = "red";
-          setIsConsistent(false);
-        }
-        
-        const divStyle = {
-          color: textColor,
-          backgroundColor: "transparent",
-          display: "inline"
-        };
-        return <span style={divStyle}>{variance}</span>  
-      }
-      }
+    const standardDeviation = calculateStandardDeviation();
+    let textColor = "black";
+    let isConsistent = true;
+
+    if (standardDeviation >= 30) {
+      textColor = "red";
+      isConsistent = false;
+    }
+
+    const spanStyle = {
+      color: textColor,
+      backgroundColor: "transparent",
+      display: "inline"
+    };
+
+  } 
+};
+
     
     const TextColor = ({text, keywords, habitualWords, color1, color2}) => {
       // 침묵구간 표시
       let script = "";
       setCount(text.length+1);
       text.forEach((element, index) => {
-        element +=" (침묵) ";
+        if (index !== text.length - 1) {
+          element += " (침묵) ";
+        }
         script += element;
       });
 
@@ -130,7 +127,7 @@ export default function Analysis() {
 
         parts = parts.flatMap((part) =>
           part.split("(침묵)").flatMap((subPart, index, arr) =>
-            index < arr.length - 1 ? [subPart, "(침묵)"] : [subPart]
+          index < arr.length - 1 ? [subPart, "(침묵)"] : [subPart]
         )
       );
 
@@ -151,12 +148,12 @@ export default function Analysis() {
               </span>
             ) : (
               (part === "(침묵)")?(
-                <span id={index} style={{color: "skyblue"}}>{part}</span>
+                <span id={index} style={{color: "white"}}>{part}</span>
               )
                 :
                 (
                   habitualWords.includes(part)?(
-                    <span id={index} style={{color: "skyblue"}}>{part}</span>
+                    <span id={index} style={{color: "#00ffff"}}>{part}</span>
                   )
                     :
                     (
@@ -207,20 +204,21 @@ export default function Analysis() {
             y: value,
           })),
         },
-      ]} color={'#FFF855'} id="speed"/> 
+      ]} color={'#FFF855'} id="speed"  unit= "bpm"/> 
       </div>
       
       <div className="speed-details"> 
       <div className="details-text">
         <br />
-      <li>발화 평균 속도: <AverageSpeed data={data.speed} /></li>
-        <li> 발화 속도 분산:  <Variance data = {data.speed}/></li>
-        
-        {!isConsistent? (
-          <span className="variance">발화 속도가 일정합니다.</span>
+      <li>발화 평균 속도: <AverageSpeed data={data.speed} />bpm</li>
+      <StandardDeviation data = {data.speed}/>
+        <li> 
+        {isConsistent? (
+          <div className="variance">발화 속도가 일정합니다.</div>
         ): (
-          <span className="variance">발화 속도가 일정하지 않습니다.</span>
-        )}
+          <div className="variance">발화 속도가 일정하지 않습니다.</div>
+        )
+      }</li>
         </div>
       </div>
       <p className="volume">목소리 크기</p>
@@ -233,19 +231,20 @@ export default function Analysis() {
               y: value,
             })),
           },
-        ]} color={'#1154FF'} id="volume"/> 
+        ]} color={'#1154FF'} id="volume" unit="db"/> 
       </div>
       <div className="volume-details">
         <div className = "details-text">
           <br/>
-          <li>목소리 평균 크기: <AverageSpeed data={data.volume} /></li>
-        <li> 목소리 크기 분산:  <Variance data = {data.volume}/></li>
+          <li>목소리 평균 크기: <AverageSpeed data={data.volume} />db</li>
+          <StandardDeviation data = {data.volume}/>
+        <li> 
         {isConsistent? (
           <div className="variance">목소리 크기가 일정합니다.</div>
         ): (
           <div className="variance">목소리 크기가 일정하지 않습니다.</div>
         )
-      }
+      }</li>
       </div>
       </div>
       
@@ -256,22 +255,26 @@ export default function Analysis() {
         </div>
         <br/> <br/>
         <div className="text-details">
-          <div className="text-list">
-            <br/>
-          <li>총 문장 개수: {data.textInfo[0]}</li>
-          <li>길이가 긴 문장 개수: {data.textInfo[1]}</li>
-          <li>핵심 키워드: {data.keyword.map((value, index)=>(
-        <span className="details-text" key={index} >{value} 
-        {(index < data.keyword.length-1)?
-        (<span>,</span>):null} </span>
-      ))}</li>
-      <li>자주 사용된 단어: {data.habitualWord.map((value, index)=>(
-        <span className="details-text" key={index} >{value} 
-        {(index < data.habitualWord.length-1)?
-        (<span>,</span>):null} </span>
-      ))}</li>
+        <div className="sentence">
+        <span className="text-title">문장 분석</span><br/><br/>
+        총 <span className="sentence-number">{data.textInfo[0]}</span>문장 중 <br/>
+
+        <span className="sentence-number">{data.textInfo[1]}</span> 문장이<br/>
+        길이가 긴 문장입니다.
         </div>
+        <div className="keyword">
+        <span className="text-title">키워드</span> <br/><br/>
+        {data.keyword.map((value, index)=>(
+        <span className="details-text" key={index} >{index+1}. {value}<br/></span>
+      ))}
         </div>
+        <div className="habitual">
+        <span className="text-title">자주 사용한 단어 </span><br/><br/>
+        {data.habitualWord.map((value, index)=>(
+        <span className="details-text" key={index} >{index+1}. {value}<br/></span>
+      ))}
+        </div>
+      </div>
       </div>
       </>
     )}

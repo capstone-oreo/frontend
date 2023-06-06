@@ -11,7 +11,7 @@ import { BsArrowRightCircle } from "react-icons/bs";
 
 const AudioRecord = () => {
   const [loading, setLoading] = useState(false);
-
+  const [condition, setCondititon] = useState(true);
   const isSmallWidth = useMediaQuery({query: '(max-width:1350px)'});
   const isSmallHeight = useMediaQuery({query: '(max-height:485px)'});
 
@@ -77,12 +77,30 @@ const AudioRecord = () => {
 
   // 녹음 중지
   const offRecAudio = () => {
+    let isShort = false;
     // Blob 데이터에 대한 응답을 받을 수 있음
     media.ondataavailable = function (e) {
       setAudioUrl(e.data);
       setOnRec(true);
-    };
 
+      e.data.arrayBuffer().then((buffer) => {
+        const audioContext = new AudioContext();
+        return audioContext.decodeAudioData(buffer);
+      }).then((audioBuffer) => {
+        // 오디오 버퍼의 길이를 초 단위로 계산
+        const audioDuration = audioBuffer.duration;
+  
+        if (audioDuration < 10) {
+          isShort = true;
+          console.log(audioDuration, isShort);
+          setCondititon(false);
+          alert("녹음된 음성은 10초 이상이어야 합니다. 다시 녹음해주세요.");
+          return;
+        }
+  
+      });
+    };
+    
     stream.getAudioTracks().forEach(function (track) { // 모든 트랙에서 반복
       track.stop(); // stop()을 통해 오디오 스트림 정지
     });
@@ -104,6 +122,7 @@ const AudioRecord = () => {
     setDisabled(false);
     console.log(sound); // File 정보 출력
   };
+
   const audioRef = useRef(null);
   // 녹음된 파일 재생
   const play = ()=>{ 
@@ -130,39 +149,54 @@ const AudioRecord = () => {
 
   // 녹음 파일을 서버로 전송
   const handleSubmit = (e) => {
-    setLoading(true);
-    e.preventDefault();
-    const formData = new FormData();
-    // File 생성자를 사용해 파일로 변환
-    const file = new File([audioUrl], "record.mp3", { lastModified: new Date().getTime(), type: "audio/mpeg" });
-    console.log(file);
-    formData.append("file", file);
-
-    // 서버에 post 요청
-    axios
-      .post("https://speechmaru.kro.kr/api/files", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        params:{
-          title: title,
-        },
-      })
-      .then((response) => {
-        // 응답 처리
-        console.log("요청 성공");
-        console.log(response);
-        console.log(formData.id);
-        console.log(file.id);
-        console.log(response.data);
-        navigate(`/analysis?fileId=${response.data}`);
-      })
-      .catch((error) => {
-        // 예외 처리
-        console.log("요청 실패");
-        console.log(error);
-      }
-      );
+    if (title.trim() === "") {
+      alert("주제를 입력해주세요.");
+      setLoading(false);
+      setCondititon(false);
+      return;
+    }
+    if(condition){
+      setLoading(true);
+      e.preventDefault();
+    
+      const formData = new FormData();
+      // File 생성자를 사용해 파일로 변환
+      const file = new File([audioUrl], "record.mp3", { lastModified: new Date().getTime(), type: "audio/mpeg" });
+      console.log(file);
+      formData.append("file", file);
+  
+      // 서버에 post 요청
+      axios
+        .post("https://speechmaru.kro.kr/api/files", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          params:{
+            title: title,
+          },
+        })
+        .then((response) => {
+          // 응답 처리
+          console.log("요청 성공");
+          console.log(response);
+          console.log(formData.id);
+          console.log(file.id);
+          console.log(response.data);
+          navigate(`/analysis?fileId=${response.data}`);
+        })
+        .catch((error) => {
+          // 예외 처리
+          console.log("요청 실패");
+          console.log(error);
+          alert("서버 요청이 실패했습니다. 다시 시도해주세요.");
+          setLoading(false);
+        }
+        );
+    }
+    else{
+      alert("녹음된 파일이 없습니다.")
+      return;
+    }
     }
 
     const clickHome = (e) =>{

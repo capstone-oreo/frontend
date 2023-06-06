@@ -8,6 +8,7 @@ import { BsArrowRightCircle } from "react-icons/bs";
 
 const FileUpload = () => {
   const [loading, setLoading] = useState(false);
+  const [condition, setCondititon] = useState(false);
 
   const isSmallWidth = useMediaQuery({query: '(max-width:1350px)'});
   const isSmallHeight = useMediaQuery({query: '(max-height:485px)'});
@@ -29,13 +30,20 @@ const FileUpload = () => {
     if (selectedFile && selectedFile.type === "audio/mpeg") { // 오디오 파일 필터링.. 다른 형식도
       setFile(selectedFile);
       console.log(selectedFile); // 파일 정보 콘솔 출력
-
+      setCondititon(true);
     } else {
       alert("음성 파일만 업로드헤주세요.");
     }
   };
 
   const handleSubmit = (e) => {
+    if (title.trim() === "") {
+      alert("주제를 입력해주세요.");
+      setLoading(false);
+      setCondititon(false);
+      return;
+    }
+    if(condition){
     setLoading(true);
     e.preventDefault();
     const formData = new FormData();
@@ -65,6 +73,10 @@ const FileUpload = () => {
         console.log(error);
       }
       );
+    }else{
+      alert("파일을 선택해주세요.");
+      return;
+    }
     }
     const clickHome = (e) =>{
       window.location.href ="/";
