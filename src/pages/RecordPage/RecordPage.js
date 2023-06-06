@@ -34,6 +34,12 @@ const AudioRecord = () => {
 
   // 녹음 실행
   const onRecAudio = () => {
+    if (title.trim() === "") {
+      alert("주제를 입력해주세요.");
+      setLoading(false);
+      setCondititon(false);
+      return;
+    }
     // 음원정보를 담은 노드를 생성, 음원 실행, 디코딩
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     const analyser = audioCtx.createScriptProcessor(0, 1, 1);
@@ -97,6 +103,7 @@ const AudioRecord = () => {
           alert("녹음된 음성은 10초 이상이어야 합니다. 다시 녹음해주세요.");
           return;
         }
+
   
       });
     };
@@ -113,14 +120,14 @@ const AudioRecord = () => {
       URL.createObjectURL(audioUrl); // 오디오를 확인할 수 있는 링크
     }
 
-    // 콘솔 출력용 코드. 나중에 삭제
-    const sound = new File([audioUrl], "record.mp3", {
-      lastModified: new Date().getTime(),
-      type: "audio/mpeg",
-    });
+    const formData = new FormData();
+    // File 생성자를 사용해 파일로 변환
+    const file = new File([audioUrl], "record.mp3", { lastModified: new Date().getTime(), type: "audio/mpeg" });
+    console.log(file);
+    formData.append("file", file);
 
     setDisabled(false);
-    console.log(sound); // File 정보 출력
+    setCondititon(true);
   };
 
   const audioRef = useRef(null);
@@ -148,13 +155,9 @@ const AudioRecord = () => {
 
 
   // 녹음 파일을 서버로 전송
-  const handleSubmit = (e) => {
-    if (title.trim() === "") {
-      alert("주제를 입력해주세요.");
-      setLoading(false);
-      setCondititon(false);
-      return;
-    }
+  const handleSubmit = (e, file) => {
+    
+    setCondititon(true);
     if(condition){
       setLoading(true);
       e.preventDefault();
@@ -165,6 +168,7 @@ const AudioRecord = () => {
       console.log(file);
       formData.append("file", file);
   
+    
       // 서버에 post 요청
       axios
         .post("https://speechmaru.kro.kr/api/files", formData, {
