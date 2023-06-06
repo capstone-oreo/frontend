@@ -116,6 +116,7 @@ const StandardDeviation = ({ data }) => {
         
 
         const applyColor = (parts, keywords, habitualWords) => {
+      
           keywords.forEach((element, index) => {
             const pattern = new RegExp(`(${element})`, "gi");
             parts = parts.flatMap((part) =>(
@@ -264,15 +265,25 @@ const StandardDeviation = ({ data }) => {
         </div>
         <div className="keyword">
         <span className="text-title">키워드</span> <br/><br/>
-        {data.keyword.map((value, index)=>(
-        <span className="details-text" key={index} >{index+1}. {value}<br/></span>
-      ))}
+        {(data.keyword.length == 0)? (
+          <span className="details-text">키워드가 없습니다.</span> 
+        ):(
+          data.keyword.map((value, index)=>(
+            <span className="details-text" key={index}>{index+1}. {value}<br/></span>
+          ))
+        )}
+        
         </div>
         <div className="habitual">
         <span className="text-title">자주 사용한 단어 </span><br/><br/>
-        {data.habitualWord.map((value, index)=>(
-        <span className="details-text" key={index} >{index+1}. {value}<br/></span>
-      ))}
+        {(data.habitualWord.length == 0)? (
+          <span className="details-text">자주 사용한 단어가 없습니다.</span> 
+        ):(
+          data.habitualWord.map((value, index)=>(
+            <span className="details-text" key={index}>{index+1}. {value}<br/></span>
+          ))
+        )}
+        
         </div>
       </div>
       </div>
