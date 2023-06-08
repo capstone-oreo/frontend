@@ -23,7 +23,7 @@
 }
 .filebox-down{
   position: fixed;
-  top: 89%;
+  top: 88%;
   left: 650px;
 }
 
@@ -31,4 +31,31 @@
   width: 0;
   height: 0;
   opacity: 0;
+}
+.selected-file-name{
+  color: white;
+  position: absolute;
+  
+  left: 75.6%;
+  right: 16.81%;
+  top:80.46%;
+  bottom: 17.65%;
+
+  font-family: 'Noto Sans KR', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 52px;
+}
+.selected-file-name-down{
+  color: white;
+  position: fixed;
+  top: 83%;
+  left: 880px;
+
+  font-family: 'Noto Sans KR', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 52px;
 }

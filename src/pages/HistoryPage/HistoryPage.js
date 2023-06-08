@@ -82,18 +82,7 @@ const History = () => {
 
   const [currentAudioIndex, setCurrentAudioIndex] = useState(null);
   const audioRef = useRef(null);
-  // const audioPlay = (index) =>{
-  //   const audio = new Audio(contentInfo.content[index].uri); 
-  //   audio.loop = false;
-  //   audio.volume = 1;
-  //     if (!isPlaying) {
-  //       audio.play();
-  //     } 
-  //     else{
-  //       audio.pause();
-  //     }
-  //     setIsPlaying(!isPlaying);
-  //   };
+
 
   const audioPlay = (index) => {
     const audio = new Audio(contentInfo.content[index].uri);

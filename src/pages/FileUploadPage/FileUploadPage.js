@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom"
 import { useMediaQuery } from 'react-responsive';
 import axios from 'axios';
@@ -8,16 +8,19 @@ import { BsArrowRightCircle } from "react-icons/bs";
 
 const FileUpload = () => {
   const [loading, setLoading] = useState(false);
-  const [condition, setCondititon] = useState(false);
+  const [condition, setCondition] = useState(false);
 
   const isSmallWidth = useMediaQuery({query: '(max-width:1350px)'});
   const isSmallHeight = useMediaQuery({query: '(max-height:485px)'});
 
   const [file, setFile] = useState();
   const [title, setTitle] = useState("");
+  const [fileName, setFileName] = useState("");
 
   const navigate = useNavigate();
-
+  useEffect(() => {
+    console.log(fileName); // 파일 이름 출력
+  }, [fileName]);
   
   // 주제 입력
   const handleTitle = (e) => {
@@ -28,7 +31,7 @@ const FileUpload = () => {
     if (title.trim() === "") {
       alert("주제를 입력해주세요.");
       setLoading(false);
-      setCondititon(false);
+      setCondition(false);
       return;
     }
     // 선택된 파일을 상태에 저장
@@ -36,15 +39,27 @@ const FileUpload = () => {
     if (selectedFile && selectedFile.type === "audio/mpeg") { // 오디오 파일 필터링.. 다른 형식도
       setFile(selectedFile);
       console.log(selectedFile); // 파일 정보 콘솔 출력
-      setCondititon(true);
+      setCondition(true);
+      setFileName(fileName => selectedFile.name); // 선택한 파일 이름 설정
+     
+      console.log("파일이름",fileName, selectedFile.name);
+      alert(selectedFile.name)
     } else {
       alert("음성 파일만 업로드헤주세요.");
     }
   };
+  
 
   const handleSubmit = (e) => {
+    if (title.trim() === "") {
+      alert("주제를 입력해주세요.");
+      setLoading(false);
+      setCondition(false);
+      return;
+    }
     
     if(condition){
+      if(window.confirm("주제: "+title+"\n파일명: "+fileName+"\n분석하시겠습니까?")){
     setLoading(true);
     e.preventDefault();
     const formData = new FormData();
@@ -74,6 +89,7 @@ const FileUpload = () => {
         console.log(error);
       }
       );
+    }
     }else{
       alert("파일을 선택해주세요.");
       return;
@@ -115,6 +131,8 @@ const FileUpload = () => {
                   </div>
                   <BsArrowRightCircle className="submit" onClick={handleSubmit}></BsArrowRightCircle>
                 </form>
+                {fileName && <p className="selected-file-name">{fileName}</p>}
+
               </div>
       :
       <div className="down">
@@ -124,9 +142,12 @@ const FileUpload = () => {
             <div className="filebox-down">
               <label htmlFor="file_upload">파일 선택</label>
               <input type="file" id="file_upload" onChange={handleChange} />
+            
             </div>
             <BsArrowRightCircle className="submit-down" onClick={handleSubmit}></BsArrowRightCircle>
           </form>
+          {fileName && <p className="selected-file-name-down">{fileName}</p>}
+
           </div>
           :
           <></>
