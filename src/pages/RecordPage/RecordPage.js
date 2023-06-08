@@ -159,6 +159,7 @@ const AudioRecord = () => {
     
     setCondititon(true);
     if(condition){
+      if(window.confirm("주제: "+title+"\n분석하시겠습니까?")){
       setLoading(true);
       e.preventDefault();
     
@@ -196,6 +197,7 @@ const AudioRecord = () => {
           setLoading(false);
         }
         );
+      }
     }
     else{
       alert("녹음된 파일이 없습니다.")
