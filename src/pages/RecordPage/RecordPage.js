@@ -9,6 +9,18 @@ import { RiStopCircleFill } from "react-icons/ri";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { BsArrowRightCircle } from "react-icons/bs";
 
+
+const Desktop = ({ children }) => {
+  const isDesktop = useMediaQuery({ minWidth: 992 })
+  return isDesktop ? children : null
+}
+
+const Mobile = ({ children }) => {
+  const isMobile = useMediaQuery({ maxWidth: 767 })
+  return isMobile ? children : null
+}
+
+
 const AudioRecord = () => {
   const [loading, setLoading] = useState(false);
   const [condition, setCondititon] = useState(true);
@@ -214,7 +226,37 @@ const AudioRecord = () => {
   return(
     <>
     {!loading ? (
-    <>
+      <div>
+      <Mobile>
+        <>
+        <div className="speech-mobile" onClick={clickHome}>Speech</div>  
+      <div className="maru-mobile"onClick={clickHome}>Maru</div>
+        <div className="history-mobile" onClick={handleClickHistory}>history</div>  
+        <div>
+          <p className="today-title-mobile">오늘의 발표 주제</p>
+          <input type="text" className="title-mobile" name="title" placeholder="주제를 입력해주세요." value={title} onChange={handleTitle} /> 
+          </div>
+          <div>
+                {onRec ? (
+                <AiFillAudio className="mike-mobile" onClick={onRec ? onRecAudio : offRecAudio}></AiFillAudio>
+                ) : (
+                  <RiStopCircleFill className="stop-mobile" onClick={onRec ? onRecAudio : offRecAudio}></RiStopCircleFill>
+                )}
+                        {(isPlaying)?(
+                  <RiStopCircleFill className="play-mobile" onClick={()=>play()} />
+                ) : (
+                  <AiFillPlayCircle className="play-mobile" onClick={()=>play()}/>
+                )
+                }
+                <form onSubmit={handleSubmit}>
+                  <BsArrowRightCircle className="submit-mobile" onClick={handleSubmit}></BsArrowRightCircle>
+                </form>
+              </div>
+        </>
+      </Mobile>
+      <Desktop>
+      <>
+    
       <div className="speech" onClick={clickHome}>Speech</div>  
       <div className="maru"onClick={clickHome}>Maru</div>
       <div className="history" onClick={handleClickHistory}>history</div>
@@ -276,11 +318,14 @@ const AudioRecord = () => {
       
       };
     </>
+    </Desktop>
+    </div>
     ):(
       <Loading/>
     ) }
     </>
-  );
+    );
+    
 };
 
 export default AudioRecord;

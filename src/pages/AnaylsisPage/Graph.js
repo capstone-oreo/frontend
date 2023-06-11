@@ -1,7 +1,7 @@
 import React from "react";
 import { ResponsiveLine } from '@nivo/line'
 
-const Graph  = ({ data, color, id, unit}) => {
+const Graph  = ({ data, color, id, unit, width, height}) => {
   return (
     <ResponsiveLine
     colors={color} 
@@ -9,8 +9,8 @@ const Graph  = ({ data, color, id, unit}) => {
       textColor: "white",
     }}
       data={data}
-      width={585}
-      height={382}
+      width={width}
+      height={height}
       margin={{ top: 50, right: 50, bottom: 50, left: 50 }}
       xScale={{ type: "point" }}
       yScale={{ type: "linear", min: "auto", max: "auto", stacked: true, reverse: false}}

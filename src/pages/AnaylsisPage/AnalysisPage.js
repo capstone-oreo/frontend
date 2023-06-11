@@ -1,9 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useMediaQuery } from 'react-responsive'
 import axios from "axios";
 import Graph from "./Graph";
 import Loading from "../LoadingPage/LoadingPage";
 import "../../css/AnalysisPage.css"
+
+const Desktop = ({ children }) => {
+  const isDesktop = useMediaQuery({ minWidth: 992 })
+  return isDesktop ? children : null
+}
+
+const Mobile = ({ children }) => {
+  const isMobile = useMediaQuery({ maxWidth: 767 })
+  return isMobile ? children : null
+}
 
 export default function Analysis() {
   const [loading, setLoading] = useState(true);
@@ -185,7 +196,112 @@ const StandardDeviation = ({ data }) => {
     }
   return(
     <>
-    {loading ? <Loading /> :(
+    {!loading ? (
+      <div>
+      <Mobile>
+        <>
+        <div className="speech-mobile" onClick={clickHome}>Speech</div>  
+        <div className="maru-mobile"onClick={clickHome}>Maru</div>
+        <div className="history-mobile" onClick={handleClickHistory}>history</div>  
+
+        <p className="voice-analysis-mobile">목소리 분석</p>
+  
+        <p className="speed-mobile">발표 속도</p>
+        <div className="speed-graph-mobile">
+          <Graph data={[
+          {
+            id: "speed",
+            data: data.speed.map((value, index) => ({
+              x: index,
+              y: value,
+            })),
+          },
+        ]} color={'#FFF855'} id="speed"  unit= "bpm" width={350} height={300}/> 
+        </div>
+        
+        <div className="speed-details-mobile"> 
+        <div className="details-text-mobile">
+          <br />
+        <li>발화 평균 속도: <AverageSpeed data={data.speed} />bpm</li>
+        <StandardDeviation data = {data.speed}/>
+          <li> 
+          {isConsistent? (
+            <div className="variance">발화 속도가 일정합니다.</div>
+          ): (
+            <div className="variance">발화 속도가 일정하지 않습니다.</div>
+          )
+        }</li>
+          </div>
+        </div>
+        <p className="volume-mobile">목소리 크기</p>
+      <div className="volume-graph-mobile">
+        <Graph data={[
+          {
+            id: "volume",
+            data: data.volume.map((value, index) => ({
+              x: index,
+              y: value,
+            })),
+          },
+        ]} color={'#1154FF'} id="volume" unit="db"width={350} height={300}/> 
+      </div>
+      <div className="volume-details-mobile">
+        <div className = "details-text-mobile">
+          <br/>
+          <li>목소리 평균 크기: <AverageSpeed data={data.volume} />db</li>
+          <StandardDeviation data = {data.volume}/>
+        <li> 
+        {isConsistent? (
+          <div className="variance">목소리 크기가 일정합니다.</div>
+        ): (
+          <div className="variance">목소리 크기가 일정하지 않습니다.</div>
+        )
+      }</li>
+      </div>
+      </div>
+      
+      <p className="text-analysis-mobile">내용 분석</p>
+      <div className="text-box-mobile">
+        <div className="text-mobile">
+          <TextColor text= {data.text} keywords={data.keyword} habitualWords={data.habitualWord}/><br/>
+        </div>
+        <br/> <br/>
+        <div className="text-details-mobile">
+        <div className="sentence-mobile">
+        <span className="text-title-mobile">문장 분석</span><br/><br/>
+        총 <span className="sentence-number">{data.textInfo[0]}</span>문장 중 <br/>
+
+        <span className="sentence-number">{data.textInfo[1]}</span> 문장이<br/>
+        길이가 긴 문장입니다.
+        </div>
+        <div className="keyword-mobile">
+        <span className="text-title">키워드</span> <br/><br/>
+        {(data.keyword.length == 0)? (
+          <span className="details-text">키워드가 없습니다.</span> 
+        ):(
+          data.keyword.map((value, index)=>(
+            <span className="details-text" key={index}>{index+1}. {value}<br/></span>
+          ))
+        )}
+        
+        </div>
+        <div className="habitual-mobile">
+        <span className="text-title">자주 사용한 단어 </span><br/><br/>
+        {(data.habitualWord.length == 0)? (
+          <span className="details-text">자주 사용한 단어가 없습니다.</span> 
+        ):(
+          data.habitualWord.map((value, index)=>(
+            <span className="details-text" key={index}>{index+1}. {value}<br/></span>
+          ))
+        )}
+        
+        </div>
+      </div>
+      </div>
+        </>
+      </Mobile>
+
+      <Desktop>
       <>
     <div className="logo">
       <div className="speech" onClick={clickHome}>Speech</div>  
@@ -205,7 +321,7 @@ const StandardDeviation = ({ data }) => {
             y: value,
           })),
         },
-      ]} color={'#FFF855'} id="speed"  unit= "bpm"/> 
+      ]} color={'#FFF855'} id="speed"  unit= "bpm" width={585} height={382}/> 
       </div>
       
       <div className="speed-details"> 
@@ -232,7 +348,7 @@ const StandardDeviation = ({ data }) => {
               y: value,
             })),
           },
-        ]} color={'#1154FF'} id="volume" unit="db"/> 
+        ]} color={'#1154FF'} id="volume" unit="db" width={585} height={382}/> 
       </div>
       <div className="volume-details">
         <div className = "details-text">
@@ -288,7 +404,13 @@ const StandardDeviation = ({ data }) => {
       </div>
       </div>
       </>
-    )}
+      
+    </Desktop>
+    </div>
+    ):(
+      <Loading/>
+    ) }
     </>
-  ); 
-}
+    );
+    
+};
