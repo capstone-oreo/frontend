@@ -1,4 +1,4 @@
-.speech, .maru{
+.speech, .maru, .speech-mobile, .maru-mobile{
   position: fixed;
   font-family: 'Lexend';
   font-style: normal;
@@ -19,17 +19,51 @@
   z-index: 2;
 }
 
+.speech-mobile{
+  left: 30px;
+  bottom: 82%;
+
+  font-size:40px;
+  line-height: 125px;
+  color: #68FF03;
+  background-color: rgb(5, 5, 5,0);
+  
+  z-index: 2;
+}
 .maru{
   left: 220px;
   right: 62.81%;
-  top: 7%;
-  bottom: 80.65%;
+  bottom: 82%;
 
   font-size: 40px;
   line-height: 88px;
   
   color: #FFFFFF;
   background-color: rgb(5, 5, 5,0);
+
+  z-index: 3;
+}
+.maru-mobile{
+left: 120px;
+  top: 7%;
+  font-size: 30px;
+  line-height: 88px;
+  
+  color: #FFFFFF;
+  background-color: rgb(5, 5, 5,0);
+
+  z-index: 3;
+}
+.history, .history-mobile{
+  background: #FFF855;
+  border-radius: 40px;
+  font-family: 'Lemon', cursive;
+  font-style: normal;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 
   z-index: 3;
 }
@@ -73,8 +107,23 @@ top:50%;
 .today-title-up{
   top: 340px;
 }
+.today-title-mobile{
+  position: absolute;
+left: 7.95%;
+right: -67.18%;
+top: 32.82%;
+bottom: 60.55%;
+width: 300px;
+height: 50px;
+font-family: 'Noto Sans KR';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 43px;
 
+color: #68FF03;
 
+}
 .title, .title-up{
   position: fixed;
   left: 470px;
@@ -95,13 +144,24 @@ top:50%;
 .title{
   top: 73.48%;
 }
-.title-up{
-  top:360px;
+.title-mobile{
+  position: absolute;
+  left: 10.77%;
+  right: 11.03%;
+  top: 44.43%;
+  height: 33px;  
+  background: #68FF03;
+  border-radius: 40px;
+  font-size: 17px;
 }
 
-.mike, .stop, .play, .submit, .mike-down, .stop-down, .play-down, .submit-down{
-  width: 61px;
+.mike, .stop, .play, .submit, .mike-down, .stop-down, .play-down, .submit-down{  width: 61px;
   height: 51px;
+  color: #68FF03;
+}
+.mike-mobile, .stop-mobile, .play-mobile, .submit-mobile{
+  width: 47px;
+  height: 40px;
   color: #68FF03;
 }
 
@@ -146,7 +206,29 @@ top:50%;
   left: 805px;
 }
 
+.mike-mobile, .stop-mobile{
+  position: absolute;
+left: 41.03%;
+right: 42.31%;
+top: 57.2%;
+}
 
-.mike:hover, .stop:hover, .play:hover, .submit:hover, .mike-down:hover, .stop-down:hover, .play-down:hover, .submit-down:hover{
+.play-mobile{
+  position: absolute;
+  left: 40.77%;
+  right: 42.31%;
+  top: 69%;
+  
+}
+
+.submit-mobile{
+  position: absolute;
+  left: 41.54%;
+  right: 38.97%;
+  top: 80.78%;
+}
+
+.mike:hover, .stop:hover, .play:hover, .submit:hover, .mike-down:hover, .stop-down:hover, .play-down:hover, .submit-down:hover,
+.mike-mobile:hover, .stop-mobile:hover, .play-mobile:hover, .submit-mobile:hover{
   color:#FFFFFF;
 }

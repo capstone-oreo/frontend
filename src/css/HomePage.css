@@ -1,7 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Lemon&display=swap');
 
 *{
-  background: #000000
+  background: #000000;
+  overflow-x: hidden;
+}
+.history, .history-mobile{
+  background: #FFF855;
+  border-radius: 40px;
+  font-family: 'Lemon', cursive;
+  font-style: normal;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  z-index: 3;
 }
 .history{
   position: fixed;
@@ -10,24 +24,24 @@ right: 6.41%;
 top:30px;
 height: 60px;
 width: 200px;
-z-index: 3;
-background: #FFF855;
-border-radius: 40px;
-font-family: 'Lemon', cursive;
-font-style: normal;
+
 font-weight: 300;
 font-size: 24px;
 line-height: 31px;
-/* identical to box height */
-
-display: flex;
-  justify-content: center;
-  align-items: center;
-
-color: #000000;
-cursor: pointer;
-
 }
+
+.history-mobile{
+  position: absolute;
+  right: 5%;
+  top: 7%;
+  height: 35px;
+width: 130px;
+
+  font-weight: 250;
+  font-size: 20px;
+  line-height: 31px;
+}
+
 #speech{
   position: absolute;
   width: 921px;
@@ -45,10 +59,26 @@ cursor: pointer;
   transition: all 500ms ease-out;
   cursor: default;
 }
+#speech-mobile{
+  position: absolute;
+left: 50px;
+top: 28.08%;
+
+font-family: 'Lexend';
+font-style: normal;
+font-weight: 400;
+font-size: 80px;
+line-height: 119px;
+/* identical to box height */
+
+
+color: #68FF03;
+}
 
 #maru{
   position: absolute;
   width: 622px;
+  height: 200px;
   left: 800px;
   top: 50%;
   bottom: 34.26%;
@@ -63,15 +93,29 @@ cursor: pointer;
   cursor: default;
   
 }
+#maru-mobile{
+  position: absolute;
+width: 180px;
+left: 160px;
+top: 45.18%;
 
+font-family: 'Lexend';
+font-style: normal;
+font-weight: 400;
+font-size: 55px;
+line-height: 88px;
+
+color: #FFFFFF;
+background-color: transparent;
+}
 .left-container{
   position: absolute;
   flex-direction: column;
   justify-content: space-between;
-  height: 90%;
+  height: 100%;
   width: 50%;
   float: left;
-  padding: 20px;
+  padding: 0px;
   display: flex;
   top: 0;
 }
@@ -87,19 +131,17 @@ cursor: pointer;
 
 .left-container:hover #speech{
   top: 14.26%;
-  bottom: 61.76%
 }
 
 .left-container:hover .method{
   display: block;
 }
-
 .record, .file{
   position: absolute;
   left: 25.00%;
   right: 64.53%;
   width: 247px;
-  height: 48px;
+  height: 50px;
 
   background: #68FF03;
   border-radius: 30px;
@@ -107,7 +149,7 @@ cursor: pointer;
   font-style: normal;
   font-weight: 400;
   font-size: 26.5px;
-  line-height: 55px; 
+  line-height: 48px; 
 
   display: flex;
   justify-content: center;
@@ -118,10 +160,40 @@ cursor: pointer;
 
 .record{
   top: 53.61%;
-  bottom: 40%;
 }
 
 .file{
   top: 63.41%;
-  bottom: 31.2%;
+}
+
+.record-mobile, .file-mobile{  
+  background: #68FF03;
+  border-radius: 30px;
+
+  color: #000000;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 40px; 
+
+width: 250px;
+height: 47px;
+
+display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.record-mobile{
+  position: absolute;
+left: 15.21%;
+right: 11.79%;
+top: 63.31%;
+}
+.file-mobile{
+  position: absolute;
+  left: 15.21%;
+  right: 12.05%;
+  top: 75.08%;
 }

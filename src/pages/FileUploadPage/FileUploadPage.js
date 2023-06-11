@@ -6,6 +6,16 @@ import Loading from "../LoadingPage/LoadingPage";
 import "../../css/FileUploadPage.css";
 import { BsArrowRightCircle } from "react-icons/bs";
 
+const Desktop = ({ children }) => {
+  const isDesktop = useMediaQuery({ minWidth: 992 })
+  return isDesktop ? children : null
+}
+
+const Mobile = ({ children }) => {
+  const isMobile = useMediaQuery({ maxWidth: 767 })
+  return isMobile ? children : null
+}
+
 const FileUpload = () => {
   const [loading, setLoading] = useState(false);
   const [condition, setCondition] = useState(false);
@@ -105,6 +115,28 @@ const FileUpload = () => {
     <>
     {!loading ? (
       <div>
+      <Mobile>
+        <>
+        <div className="speech-mobile" onClick={clickHome}>Speech</div>  
+      <div className="maru-mobile"onClick={clickHome}>Maru</div>
+        <div className="history-mobile" onClick={handleClickHistory}>history</div>  
+        <div>
+          <p className="today-title-mobile">오늘의 발표 주제</p>
+          <input type="text" className="title-mobile" name="title" placeholder="주제를 입력해주세요." value={title} onChange={handleTitle} /> 
+          </div>
+          <form onSubmit={handleSubmit}>
+                  <div className="filebox-mobile">
+                    <label htmlFor="file_upload">파일 선택</label>
+                    <input type="file" id="file_upload" onChange={handleChange} />
+                  </div>
+                  <BsArrowRightCircle className="submit-mobile" onClick={handleSubmit}></BsArrowRightCircle>
+          </form>
+
+          </>
+      </Mobile>
+      <Desktop>
+      <>
+      
       <div className="speech" onClick={clickHome}>Speech</div>  
       <div className="maru"onClick={clickHome}>Maru</div>
       <div className="history" onClick={handleClickHistory}>history</div>
@@ -152,15 +184,16 @@ const FileUpload = () => {
           :
           <></>
         }
-      </div>
-          
+      </div>   
       };
-  </div>
+    </>
+    </Desktop>
+    </div>
     ):(
       <Loading/>
     ) }
     </>
-  );
+    );
+    
 };
-
 export default FileUpload;

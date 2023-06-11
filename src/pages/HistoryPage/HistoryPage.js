@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useMediaQuery } from 'react-responsive';
 import axios from "axios";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { RiStopCircleFill } from "react-icons/ri";
@@ -6,7 +7,15 @@ import { TbReportAnalytics } from "react-icons/tb";
 import { FaTrashAlt } from "react-icons/fa";
 
 import "../../css/HistoryPage.css"
+const Desktop = ({ children }) => {
+  const isDesktop = useMediaQuery({ minWidth: 992 })
+  return isDesktop ? children : null
+}
 
+const Mobile = ({ children }) => {
+  const isMobile = useMediaQuery({ maxWidth: 767 })
+  return isMobile ? children : null
+}
 const History = () => {
   const [contentInfo, setContentInfo] = useState({
     first: true,
@@ -135,6 +144,45 @@ const History = () => {
 
 return(
   <>
+  <Mobile>
+  <>
+    <div className="speech-mobile" onClick={clickHome}>Speech</div>  
+    <div className="maru-mobile"onClick={clickHome}>Maru</div>
+    <div className="list-container-mobile">
+      <p className="list-text-mobile">발표 목록</p>
+    {contentInfo.content.map((product, index) =>(
+        <div className="content-mobile">
+        <p className="content-index-mobile">{3*(currentPage)+index+1}회차</p>
+        <p className="content-title-mobile">{product.title}</p>
+        {(isPlaying&&index===currentAudioIndex)?(
+          <RiStopCircleFill className="play-audio-mobile" onClick={()=>audioPlay(index)} />
+        ) : (
+          <AiFillPlayCircle className="play-audio-mobile" onClick={()=>audioPlay(index)}/>
+        )
+        }
+        <TbReportAnalytics className="go-analysis-mobile" onClick={()=>handleAnalysis(index)}/>
+        <FaTrashAlt className="delete-audio-mobile" onClick={()=>deleteAnalysis(index)}/>
+        </div>
+          ))}
+      <div className="buttons-mobile">
+      <button className="button-mobile"onClick={first}>{"<<"}</button>
+        {Array(contentInfo.totalPages)
+          .fill(0)
+          .map((p, i) => {
+            const index = i + 1;
+            return (
+              <button className="button-mobile" onClick={() => jump(index-1)}>
+                {`${index}`}
+              </button>
+            );
+          })}
+        <button className="button-mobile" onClick={last}>{">>"}</button>
+      </div>
+    </div>
+  </>
+  </Mobile>
+  <Desktop>
+  <>
     <div className="speech" onClick={clickHome}>Speech</div>  
     <div className="maru"onClick={clickHome}>Maru</div>
       <div className="list-container">
@@ -168,6 +216,8 @@ return(
         <button onClick={last}>{">>"}</button>
       </div>
     </div>
+    </>
+    </Desktop>
     </>
   );
 };

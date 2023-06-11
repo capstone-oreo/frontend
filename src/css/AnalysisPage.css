@@ -12,10 +12,8 @@ li, span{
   width:150px;
   height: 100px;
 }
-.voice-analysis, .text-analysis{
+.voice-analysis, .text-analysis, .voice-analysis-mobile, .text-analysis-mobile{
   position: relative;
-left: 70px;
-top:100px;
 font-family: 'M PLUS 1';
 font-style: normal;
 font-weight: 700;
@@ -23,13 +21,27 @@ font-size: 33px;
 line-height: 70px;
 
 color: #68FF03;
+z-index: 1;
 }
+.voice-analysis{
+  width: 200px;
+  left: 70px;
+  top:100px;
+}
+.voice-analysis-mobile{
+  left: 6.92%;
+  right: 23.08%;
+  top: 90px;
+  font-size: 20px;
 
+}
 .text-analysis{
   top:-300px;
+  left:100px;
+  width: 200px;
 }
 
-.speed, .volume{
+.speed,.speed-mobile, .volume, .volume-mobile{
   position: relative;
   font-family: 'Noto Sans KR', sans-serif;  
   font-style: normal;
@@ -45,15 +57,32 @@ color: #68FF03;
   top: -90px;
   left: 520px;
 }
+.speed-mobile{
+  top:50px;
+  left:140px;
+  font-weight: 400;
+  font-size: 20px;
+  background-color: transparent;
+  z-index: 1;
+}
 
 .speed-graph, .volume-graph{
-  height: 300px;
+  height: 382px;
   color: white;
   position: relative;
 }
 .speed-graph{
   top:-80px;
   left: 310px;
+}
+.speed-graph-mobile, .volume-graph-mobile{
+  height: 370px;
+  color: white;
+  position: relative;
+}
+.speed-graph-mobile{
+  top:30px;
+  left:10px;
 }
 .speed-details, .volume-details, .text-details{
   font-family: 'Noto Sans KR', sans-serif;
@@ -70,19 +99,23 @@ color: #68FF03;
   width: 532px;
   border-radius: 30px;
   margin: 0 auto;
-}
-li, .details-text{
-  width: 500px;
-  position: relative;
-  background-color: transparent;
-}
-
-.speed-details, .volume-details{
   display: inline-block;
   vertical-align: middle;
   text-align: center;
 }
-
+.details-text{
+  width: 500px;
+  position: relative;
+  background-color: transparent;
+}
+.details-text-mobile{
+  width: 270px;
+  position: relative;
+  left:10px;
+  background-color: transparent;
+  font-weight: 600;
+  font-size: 18px;
+}
 #average{
   color: red;
 }
@@ -92,24 +125,61 @@ li, .details-text{
   background-color: #FFF855;
 }
 
+.speed-details-mobile, .volume-details-mobile{
+  position: relative;
+  height: 80px;
+  width: 300px;
+  border-radius: 30px;
+  margin: 0 auto;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  z-index: 2;
+}
+
+.speed-details-mobile{
+  left: 30px;
+  background-color: #FFF855;
+}
+
 .variance{
   background-color: transparent;
   display: inline;
 }
 .volume{
-  top:-577px;
+  top:-670px;
   left: 1060px;
 }
-
+.volume-mobile{
+  top:70px;
+  left:140px;
+  font-weight: 400;
+  font-size: 20px;
+  background-color: transparent;
+  z-index: 1;
+}
 .volume-graph{
-  top:-577px;
+  top:-650px;
   left:880px;
+}
+.volume-graph-mobile{
+  top: 80px;
+  left:10px;
 }
 
 .volume-details{
-  top: -447px;
+  top: -530px;
   left: 900px;
   background: #1154FF;
+}
+.volume-details-mobile{
+  top: 0px;
+  left: 30px;
+  background: #1154FF;
+}
+.text-analysis-mobile{
+  left: 6.92%;
+  font-size: 20px;
 }
 .text-box{
   position: relative;
@@ -129,9 +199,25 @@ line-height: 43px;
 color: #68FF03;
 
 }
+.text-mobile{
+  width: 330px;
+  padding: 10px;
+  
+  font-family: 'Noto Sans KR', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 43px;
+  
+  color: #68FF03;
+  
+  }
 .text-details{
   display: flex;
   width: 1100px;
+}
+.text-details-mobile{
+  width: 320px;
 }
 .sentence, .keyword, .habitual{
 width: 100px;
@@ -145,8 +231,20 @@ margin: 15px;
 flex: 1;
 text-align: center;
 justify-content : center;
-
 }
+.sentence-mobile, .keyword-mobile, .habitual-mobile{
+  width: 285px;
+  border-radius: 20px;
+  padding: 10px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  margin: 15px;
+  flex: 1;
+  text-align: center;
+  justify-content : center;
+  }
 .sentence{
   background-color: #68FF03;
   float:left;
@@ -159,6 +257,15 @@ justify-content : center;
 .habitual{
   background-color: skyblue;
   display:inline-block;
+}
+.sentence-mobile{
+  background-color: #68FF03;
+}
+.keyword-mobile{
+  background-color: yellow;
+}
+.habitual-mobile{
+  background-color: skyblue;
 }
 .text-title{
   font-size: 30px;
