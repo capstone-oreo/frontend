@@ -13,5 +13,22 @@ align-items: center;
 font-size: 30px;
 line-height: 70px;
 position: relative;
-left:-60px;
+left:0px;
+}
+.loading-mobile{
+  display: block;
+  position: absolute;
+  top:35%;
+  right: 30%;
+text-align: center;
+align-items: center;
+
+}
+.loading-text-mobile{
+  color: #68FF03;
+  font-weight: 400;
+font-size: 15px;
+line-height:32px;
+position: relative;
+left:0px;
 }
