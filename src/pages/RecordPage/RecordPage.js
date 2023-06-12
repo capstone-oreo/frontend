@@ -205,7 +205,7 @@ const AudioRecord = () => {
           // 예외 처리
           console.log("요청 실패");
           console.log(error);
-          alert("서버 요청이 실패했습니다. 다시 시도해주세요.");
+          alert(error.response.data.message);
           setLoading(false);
         }
         );

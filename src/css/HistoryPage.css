@@ -44,7 +44,7 @@ width: 345px;
   border-radius: 40px;
 }
 
-  .list-text-mobile{
+.list-text-mobile{
 font-family: 'Inter';
 font-style: normal;
 font-weight: 700;
@@ -53,10 +53,7 @@ line-height: 29px;
 
 color: #FFFFFF;
 background-color: rgb(5, 5, 5,0);
-}
 
-
-.list-text-mobile{
   position: relative;
   left:60px;
   top: 20px;  
@@ -136,61 +133,60 @@ width: 270px;
 height:60px;
 left: 60px;
 top: 20px;
-
+padding:0;
 background: #FFFFFF;
 border-radius: 30px;
+
 }
 .content-index-mobile, .content-title-mobile{
   font-family: 'Noto Sans KR', sans-serif;
 font-style: normal;
   background-color: rgb(255, 255, 255, 0);
   color: black;
+
 }
 
 .content-index-mobile{
   position: absolute;
-left: 20px;
-top:-2px;
+  top: 17px;
 
+left: 20px;
+margin: 0;
 font-weight: 700;
-font-size: 15px;
-line-height: 35px;
+font-size: 15px
 }
 .content-title-mobile{
   position: relative;
   width:300px;
   left: 80px;
-  top: -12px;
-  
+  top:15px;
+  margin:0;
 font-weight: 400;
-font-size: 20px;
-line-height: 43px;
+font-size: 18px;
 }
 
 .play-audio-mobile, .stop-audio-mobile, .go-analysis-mobile, .delete-audio-mobile{
   position: relative;
-  height: 48px;
-  top:-35px;
+  top:-10px;
   border-radius: 0px;
   color: #78A55A;
   background-color: rgb(5, 5, 5, 0);
 }
 .play-audio-mobile,.stop-audio-mobile{
   left: 165px;
-  height: 48px;
-  top: -79px;
+  height: 25px;
   width: 25px;
 }
 .go-analysis-mobile{
   left: 175px;
-  height: 52px;
-  top: -78px;
+  height: 27px;
   width: 27px;
 }
 .delete-audio-mobile{
   left: 183px;
-  top:-80px;
-  width: 18px;
+  width: 20px;
+  height: 20px;
+  top:-14px;
 }
 button {
   color: white;
@@ -220,17 +216,18 @@ border-radius: nullpx;
   font-family: 'Inter';
 font-style: normal;
 font-weight: 700;
-font-size: 20px;
+font-size: 17px;
 line-height: 30px;
 
 color: #68FF03;
 }
 .buttons-mobile{
   position: fixed;
-  height: 41px;
 width:200px;
 left: 50px;
-top: 500px;
+bottom:0;
+margin: 0;
+padding: 0;
 border-radius: nullpx;
 background-color: transparent;
 }

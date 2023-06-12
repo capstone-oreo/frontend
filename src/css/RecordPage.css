@@ -144,6 +144,9 @@ color: #68FF03;
 .title{
   top: 73.48%;
 }
+.title-up{
+  top:380px;
+}
 .title-mobile{
   position: absolute;
   left: 10.77%;

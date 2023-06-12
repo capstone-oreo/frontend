@@ -51,7 +51,7 @@ const FileUpload = () => {
       console.log(selectedFile); // 파일 정보 콘솔 출력
       setCondition(true);
       setFileName(fileName => selectedFile.name); // 선택한 파일 이름 설정
-     
+    
       console.log("파일이름",fileName, selectedFile.name);
       alert(selectedFile.name)
     } else {
@@ -97,6 +97,8 @@ const FileUpload = () => {
         // 예외 처리
         console.log("요청 실패");
         console.log(error);
+        alert(error.response.data.message);
+        setLoading(false);
       }
       );
     }
