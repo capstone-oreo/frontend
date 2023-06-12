@@ -205,7 +205,7 @@ const AudioRecord = () => {
           // 예외 처리
           console.log("요청 실패");
           console.log(error);
-          alert(error.response.data.message);
+          alert(error.response.data.message+"\n크롬 브라우저외에는 정상적으로 작동하지 않을 수 있습니다.");
           setLoading(false);
         }
         );
